@@ -8,13 +8,13 @@ int main() {
 	}
 	while (num < 1 || num > 9);
 
-		int x = 2;
-		int a = 8;
-		while (a) {
-			cout << num << " * " << x << " = " << num * x << "\n";
-			x++;
-			a--;
-		}
+	int x = 2;
+	int a = 8;
+	while (a) {
+		cout << num << " * " << x << " = " << num * x << "\n";
+		x++;
+		a--;
+	}
 	
 			 
 
