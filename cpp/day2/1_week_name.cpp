@@ -7,9 +7,10 @@ int main() {
 	{
 		cout << "Input week number(1-7): ";
 		cin >> weekNum;
+		cout<< weekNum << endl;
 	}
-	while (weekNum < 1 || weekNum > 7);
-	
+	while (!(weekNum >= 1 && weekNum <= 7));
+
 	switch (weekNum)
 	{
 		case 1:
@@ -33,8 +34,6 @@ int main() {
 		case 7:
                         cout << "Sunday\n";
                         break;
-
-
 	}
 	
 	return 0;

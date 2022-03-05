@@ -10,5 +10,6 @@ int main() {
 	int p = 2 * (length + width);
 	int s = length * width;
 	cout << "p = " << p << "\n" << "s = " << s << "\n";
-	
+
+	return 0;	
 }

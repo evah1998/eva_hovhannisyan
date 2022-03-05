@@ -11,4 +11,5 @@ int main() {
 	int sum_legs = chicken * 2 + cow * 4 + pig * 4;
 	cout << sum_legs << "\n";
 
+	return 0;
 }

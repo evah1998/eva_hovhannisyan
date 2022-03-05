@@ -6,10 +6,10 @@ int main() {
 		cout << "Enter number: ";
 		cin >> num;
 	}
-	while (num < 1 || num > 9);
+	while (num < 1 || num > 10);
 
-	int x = 2;
-	int a = 8;
+	int x = 1;
+	int a = 9;
 	while (a) {
 		cout << num << " * " << x << " = " << num * x << "\n";
 		x++;
