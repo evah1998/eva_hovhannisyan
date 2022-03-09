@@ -3,10 +3,14 @@
 using namespace std;
 
 int main() {
+	int size;
+	cout << "Input size of array: ";
+	cin >> size;
+
+	double arr[size];
+	double Max = 0;
 	srand(time(NULL));
-	int arr[10];
-	int Max = 0;
-	for(int i=0; i < 10; i++) {
+	for(int i=0; i < size; i++) {
 		arr[i] = rand() % 100;
 		cout << arr[i] << ", ";
 		Max = max(Max,arr[i]);

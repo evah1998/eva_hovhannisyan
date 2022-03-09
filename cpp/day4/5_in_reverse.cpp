@@ -12,7 +12,7 @@ int main() {
 	int arr[size];
 	srand(time(NULL));
 	for (int i = 1; i <= n; i++) {
-		arr[i] = rand() % 100;
+		arr[i] = (rand() % 100) - 50;
 		cout << arr[i] << ", ";
 	}
 	cout << endl << endl;
