@@ -19,7 +19,7 @@ int main() {
 		case 'u': case 'U':
 			cout << alpha << " is vowel\n";
 			break;
-		default :
+		default:
 			cout << alpha << " is consonant\n";
 	}
 	return 0;
