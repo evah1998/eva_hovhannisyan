@@ -11,9 +11,11 @@ int main() {
 	double Max = 0;
 	srand(time(NULL));
 	for(int i=0; i < size; i++) {
-		arr[i] = rand() % 100;
+		arr[i] = (rand() % 100) / 1.5;
 		cout << arr[i] << ", ";
-		Max = max(Max,arr[i]);
+		if (arr[i] > Max) {
+			Max = arr[i];
+		}
 	}
 	cout << endl;
 	cout << "Max = " << Max << endl;

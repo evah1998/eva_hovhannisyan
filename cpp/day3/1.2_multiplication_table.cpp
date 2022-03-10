@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
-int inputNum(int number) {
+int inputNum() {
+	int number;
 	do {
 		cout << "Enter number: ";
 		cin >> number;
@@ -8,16 +9,15 @@ int inputNum(int number) {
 	while (number < 1 || number > 10);
 	return number;
 }
-void multiply(int x,int a,int number) {
-	while (a) {
-		cout << number << " * " << x << " = " << number * x << "\n";
-		x++;
-		a--;
+void multiply(int number) {
+	int a = 1;
+	while (a <= 10) {
+		cout << number << " * " << a << " = " << number * a << "\n";
+		a++;
 	}
 }
 int main() {
-	int num;
-	num = inputNum(num);
-	multiply(1,10,num);	
+	int num = inputNum();
+	multiply(num);	
 	return 0;
 }

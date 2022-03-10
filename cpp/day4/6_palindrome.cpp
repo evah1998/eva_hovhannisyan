@@ -16,6 +16,8 @@ int main() {
 	}
 	if (ispalindrome(s)) {
 		cout << "True\n";
+	} else {
+		cout << "False\n";
 	}
 	return 0;
 }
