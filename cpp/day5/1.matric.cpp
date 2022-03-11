@@ -4,7 +4,7 @@ using namespace std;
 int main() {	
 	srand(time(0));
 	const int size = 6;
-	int arr[size][size] = {{1,2,3},{4,5,6},{7,8,9}, {1,2,3},{4,5,6},{7,8,9}};	
+	int arr[size][size] = {};	
 	int topSmall = 0, rightSmall = 0, leftSmall =0, botomSmall = 0, topRightBig = 0, botomLeftBig = 0, topLeftBig = 0, botomRightBig = 0;
 
 	for (int i = 0; i < size; i++) {
