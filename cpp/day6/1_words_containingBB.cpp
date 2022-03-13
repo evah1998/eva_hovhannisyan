@@ -10,6 +10,7 @@ int main() {
 	getline (cin, str);
 	for (int i = 0; str[i] != '\0'; i++) {
 		if ((str[i] < 'A' || str[i] > 'Z') && str[i] != ' ') { 
+			cout << "Enter a capital letter" << endl;
 			return 0;
 		}	
 		if (str[i] == 'B') {

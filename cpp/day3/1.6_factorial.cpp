@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-int inputNum(int);
-void factorial(int,int,int);
+int inputNum();
+int factorial(int,int,int);
 int main() {
-	int n = inputNum(n);
+	int n = inputNum();
     	if (n < 0) {
 	     	cout << "Error! Factorial of a negative number\n";
 	} else {
@@ -12,16 +12,19 @@ int main() {
 	}
 	return 0;
 }
-int inputNum(int num) {
+int inputNum() {
+	int num;
 	cout << "Enter a positive integer: ";
 	cin >> num;
 	return num;
 }
-void factorial(int i,int factorial,int n) {
+int factorial(int i,int factorial,int n) {
+
 	while (i < n) {
 		i++;
 		factorial *= i;
 	}
 	cout << "Factorial of " << n << " = " << factorial << "\n";
+	return factorial;
 }
 

@@ -3,7 +3,6 @@ using namespace std;
 
 int main() {
 	const int m = 5, n = 4;
-	int Min = 10, Max = 0;
 	int indexMin = 0, indexMax = 0;
 	srand(time(0));
 	int arr[m][n] = {};
@@ -15,14 +14,15 @@ int main() {
 		cout << endl;
 	}
 	cout << endl;
-
+	int Min, Max;
 	for (int i = 0; i < m; i++) {
+		Max = arr[i][0], Min = arr[i][0];
 		for (int j = 0; j < n; j++) {     
-			if (arr[i][j] > Max) {
+			if (arr[i][j] >= Max) {
 				Max = arr[i][j];
 				indexMax = j;
 			}
-			if (arr[i][j] < Min) {
+			if (arr[i][j] <= Min) {
 				Min = arr[i][j];
 				indexMin = j;
 			}
@@ -33,7 +33,6 @@ int main() {
 			cout << arr[i][j] << " ";
 		}
 		cout << endl;
-		Max = 0, Min = 10;
 	}
 
 	return 0;
