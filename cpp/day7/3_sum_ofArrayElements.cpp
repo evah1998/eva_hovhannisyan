@@ -4,11 +4,11 @@ using namespace std;
 void SumofArrayElements(int *ptr, int size, int *arr, int *sum) {
 	srand(time(0));
 	while (ptr - arr < size) {
-		*ptr = rand() % 10;
-		*sum += *ptr;
-		cout << *ptr << ", ";
-		ptr++;
-	}
+                *ptr = rand() % 10;
+                *sum += *ptr;
+                cout << *ptr << ", ";
+                ptr++;
+        }
 	cout << endl;
 }
 int main() {
