@@ -2,13 +2,14 @@
 using namespace std;
 
 int inputNum();
-int factorial(int,int,int);
+int factorial(int, int, int);
+
 int main() {
 	int n = inputNum();
     	if (n < 0) {
 	     	cout << "Error! Factorial of a negative number\n";
 	} else {
-		factorial(0,1,n);
+		factorial(0, 1, n);
 	}
 	return 0;
 }
@@ -18,7 +19,7 @@ int inputNum() {
 	cin >> num;
 	return num;
 }
-int factorial(int i,int factorial,int n) {
+int factorial(int i, int factorial, int n) {
 
 	while (i < n) {
 		i++;

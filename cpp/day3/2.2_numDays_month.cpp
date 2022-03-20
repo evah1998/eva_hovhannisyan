@@ -1,15 +1,17 @@
 #include <iostream>
 using namespace std;
 
-int inputMonth(int);
+int inputMonth();
 void isMonth(int);
+
 int main() {
-	int month = inputMonth(month);
+	int month = inputMonth();
 	isMonth(month);
 	return 0;
 }
 
-int inputMonth(int monthNum) {
+int inputMonth() {
+	int monthNum;
 	do
 	{
 		cout << "Input month number: ";
@@ -18,6 +20,7 @@ int inputMonth(int monthNum) {
 	while (monthNum < 1 || monthNum > 12);
 	return monthNum;
 }
+
 void isMonth(int monthNum) {	
 	switch (monthNum)
 	{
@@ -31,7 +34,7 @@ void isMonth(int monthNum) {
 			cout << "Total number of days = 31\n";
 			break;
 		case 2:
-                        cout << "Total number of days = 28 or 29.Input year: ";
+			cout << "Total number of days = 28 or 29.Input year: ";
 			int year;
 			cin >> year;
 			if (year % 4 == 0) {
@@ -44,8 +47,8 @@ void isMonth(int monthNum) {
 		case 6:
 		case 9:
 		case 11:
-                     	cout << "Total number of days = 30\n";
-                        break;
+			cout << "Total number of days = 30\n";
+			break;
 			
 	}
 }

@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
-double isOperator(double,char,double);
+
+void isOperator(double,char,double);
 
 int main() {
 	
@@ -16,35 +17,34 @@ int main() {
 	cout << "Input number 2: ";
 	cin >> num2;
 
-	double result = isOperator(num1,op,num2);
-	if (result == 0) {
-		return 0;
-	}
-	cout << num1 << " " << op << " " << num2 << " = " << result << "\n"; 
+	isOperator(num1, op, num2);
 	return 0;
 }
-double isOperator(double num1,char op,double num2) {
+
+void isOperator(double num1, char op, double num2) {
+	double result = 0;
 	switch (op) {
 		case '+':
-			return num1 + num2;
+			result = num1 + num2;
 			break;
 		case '-':
-			return num1 - num2;
+			result = num1 - num2;
 			break;
 		case '*':
-			return num1 * num2;
+			result = num1 * num2;
 			break;
 		case '/':
 			if (num2 == 0) {
 				cout << "Can not be divided by 0\n";
-				return 0;
+				return;
 			}
-			return num1 / num2;
+			result = num1 / num2;
 			break;
 		default:
 			cout << "Invalid operator\n";
-			return 0;
+			return;
 	} 
+	cout << num1 << " " << op << " " << num2 << " = " << result << "\n"; 
 }
 
 

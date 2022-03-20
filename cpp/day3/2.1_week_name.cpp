@@ -1,14 +1,17 @@
 #include <iostream>
 using namespace std;
-int inputWeek(int);
+
+int inputWeek();
 void isWeek(int);
+
 int main() {
-	int weekNum = inputWeek(weekNum);
+	int weekNum = inputWeek();
 	isWeek(weekNum);
 	return 0;
 }
 
-int inputWeek(int week) {
+int inputWeek() {
+	int week;
 	do
 	{
 		cout << "Input week number(1-7): ";
@@ -17,6 +20,7 @@ int inputWeek(int week) {
 	while (!(week >= 1 && week <= 7));
 	return week;
 }
+
 void isWeek(int weekNum) {
 	switch (weekNum)
 	{

@@ -1,14 +1,16 @@
 #include <iostream>
 using namespace std;
-char inputAlpha(char);
+
+char inputAlpha();
 void isAlpha(char);
 
 int main() {
-	char alpha = inputAlpha(alpha);
+	char alpha = inputAlpha();
 	isAlpha(alpha);
 	return 0;
 }
-char inputAlpha(char alpha) {
+char inputAlpha() {
+	char alpha;
 	do 
 	{
 		cout << "Input alphabet: ";
@@ -17,6 +19,7 @@ char inputAlpha(char alpha) {
 	while (alpha < 'A' || alpha > 'z' || (alpha < 'a' && alpha > 'Z'));
 	return alpha;	
 }
+
 void isAlpha(char alpha) {
 	switch (alpha) 
 	{

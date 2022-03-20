@@ -1,7 +1,8 @@
 #include <iostream>
 using namespace std;
 
-void leapYears(int year,int a) {
+void leapYears() {
+	int year = 2022, a = 0;
 	while (a != 20) {
 		if (year % 4 == 0) { 
 			cout << year << "\n";
@@ -11,6 +12,6 @@ void leapYears(int year,int a) {
 	}
 }
 int main() {
-	leapYears(2022,0);
+	leapYears();
 	return 0;
 }

@@ -1,10 +1,11 @@
 #include <iostream>
 using namespace std;
 
-void firstTree(int,int);
-void secondTree(int,int,int);
-void thirdTree(int,int,int);
-void fourthTree(int,int,int);
+void firstTree(int, int);
+void secondTree(int, int, int);
+void thirdTree(int, int, int);
+void fourthTree(int, int, int);
+
 int main() {
 	int n;
 	cout << "Input number: ";
@@ -19,7 +20,7 @@ int main() {
  **
  *   */
 
-firstTree(num,num);
+	firstTree(num, num);
 
 /*Second christas tree
      *
@@ -28,7 +29,7 @@ firstTree(num,num);
   ****
  *****   */
 
-secondTree(i,j,num);
+	secondTree(i, j, num);
 
 /*Third christas tree
  *
@@ -37,7 +38,7 @@ secondTree(i,j,num);
  ****
  *****   */
 
-thirdTree(i,j,num);
+	thirdTree(i, j, num);
 
 /*Fourth christmas tree
      *
@@ -46,11 +47,11 @@ thirdTree(i,j,num);
   * * * *
  * * * * *     */
 
-fourthTree(i,j,num);
-return 0;
+	fourthTree(i, j, num);
+	return 0;
 }
 
-void firstTree(int i,int j) {
+void firstTree(int i, int j) {
 
 	while (i) {
                 int j = i;
@@ -63,7 +64,7 @@ void firstTree(int i,int j) {
         }
         cout << "\n";
 }
-void secondTree(int i,int j,int num) {	
+void secondTree(int i, int j, int num) {	
 	i = 1;
         while (i <= num) {
 		j = 1;                
@@ -81,7 +82,7 @@ void secondTree(int i,int j,int num) {
         }
         cout << "\n";
 }
-void thirdTree(int i,int j,int num) {
+void thirdTree(int i, int j, int num) {
 	i = 1;
         while (i <= num) {
                 int j = 1;
@@ -95,7 +96,7 @@ void thirdTree(int i,int j,int num) {
         cout << "\n";
 
 }
-void fourthTree(int i,int j,int num) {
+void fourthTree(int i, int j, int num) {
 	i = 1;
         while (i <= num) {
                 int j = 1;
