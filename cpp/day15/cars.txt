@@ -1,0 +1,10 @@
+Audi A5 10000 128000 3.2 automatic black
+Audi Q7 19000 110000 4.2 automatic black
+Bentley GT 35000 97000 6.0 automatic gray
+Infiniti FX35 16000 120000 3.5 automatic black
+Kia Forte 8700 57000 1.8 automatic gray
+Kia Optima 25000 15000 1.9 automatic white
+Lexus NX 32000 60000 2.0 automatic white
+Opel Astra 4550 187000 1.6 manual gray
+Toyota Camry 29200 67000 2.5 automatic black
+Nissan Altima 9300 150000 2.5 automatic gray
