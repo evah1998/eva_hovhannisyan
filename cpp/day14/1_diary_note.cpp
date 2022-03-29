@@ -24,6 +24,23 @@ void dateTo_dd_mm_yyyy(string date, string *dateParts, int *day, int *month, int
 	*year = stoi(dateParts[2]);
 }
 
+bool isTrueDate(int *day, int *month, int *year) {
+	int arr[12] = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	if (*month >= 1 && *month <= 12 && *day >= 1 && *day <= arr[*month - 1] && *year >= 1900) {
+		if (*month == 2) {
+			if (*year % 4 != 0 && *day <= 28) {
+				return true;
+			} else if (*year % 4 == 0 && *day <= arr[*month - 1]) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		return true;
+	}
+	return false;
+}
+
 int weekday_num(int day, int month, int year) {
 	tm time_in = {0, 0, 0, day, month - 1, year - 1900};
 	time_t time_temp = mktime(&time_in);
@@ -98,6 +115,10 @@ int main() {
 		dateParts[1] = "";
 		dateParts[2] = "";
 		dateTo_dd_mm_yyyy(date, ptr, &day, &month, &year);
+		if (isTrueDate(&day, &month, &year) == false) {
+			cout << "Date does not exist\n"; 
+			return 0;
+		}
 		weekNumber[i] = weekday_num(day, month, year);
 		cin.ignore();
 		inputNote();
