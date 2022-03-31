@@ -13,6 +13,66 @@ struct Cars {
 	string color;
 };
 
+int findCarsIndex(int arrSize, string date, int *ptr, Cars *cars) {
+	int size = 0;
+	for (int i = 0; i < arrSize; i++) {
+		if (cars[i].make == date) {
+			ptr[size] = i;
+			size++;
+		} else if (cars[i].transmission == date) {
+			ptr[size] = i;
+			size++;
+		} else if (cars[i].color == date) {
+			ptr[size] = i;
+			size++;
+		} 
+	}
+	return size;
+}
+
+int price(int arrSize, int minPrice, int maxPrice, int *ptr, Cars *cars) {
+	int size = 0;
+	for (int i = 0; i < arrSize; i++) {
+		if (cars[i].price >= minPrice && cars[i].price <= maxPrice) {
+				ptr[size] = i;
+				size++;
+		}
+	}
+	return size;
+}
+
+int findCarsIndexTwo(int Size, string date, int *ptr, int *arr, Cars *cars) {
+	int size = 0;
+	for (int i = 0; i < Size; i++) {
+		if (cars[ptr[i]].make == date) {
+			arr[size] = i;
+			size++;
+		} else if (cars[ptr[i]].transmission == date) {
+	cout<< " sizetransmission = " << size << endl;
+			arr[size] = i;
+			size++;
+		} else if (cars[ptr[i]].color == date) {
+	cout<< " sizecolor = " << size << endl;
+	cout<< "  ptr[size]= " << ptr[size] << endl;
+			arr[size] = ptr[i];
+	cout<< "  ptr[size]newwww= " << ptr[size] << endl;
+			size++;
+		} 
+	}
+	return size;
+}
+
+int priceTwo(int Size, int minPrice, int maxPrice, int *ptr, int *arr, Cars *cars) {
+	int size = 0;
+	for (int i = 0; i < Size; i++) {
+		if (cars[ptr[i]].price >= minPrice && cars[ptr[i]].price <= maxPrice) {
+				arr[size] = ptr[i];
+				size++;
+		}
+	}
+	return size;
+}
+
 void printCars(int size, int *ptr, Cars *cars) {
 	for (int i = 0; i < size; i++) {
 		Cars temp = cars[ptr[i]];
@@ -51,7 +111,7 @@ int main() {
 
 
 	cout << "Select filter\n"
-	<< "===============================\n";
+	<< "=======================================================================\n";
 	cout << "Make";
 	for (int i = 0; i < arrSize; i++) {
 		if (cars[i].make != cars[i - 1].make) {
@@ -67,24 +127,52 @@ int main() {
 		}
 	}
 
+	cout << "\n \t\t <<<<<<<<<<<<<< Price (Min // Max) >>>>>>>>>>>>>> \n\n";
+	int Size, size;
 	int indexarr[10] = {};
+	int indexptr[10] = {};
 	int *ptr = indexarr;
-	int size = 0;
-	string car;
-	cin >> car;
-	for (int i = 0; i < arrSize; i++) {
-		if (cars[i].make == car) {
-			indexarr[size] = i;
-			size++;
-			cout << "size if =" << size << endl;
-		} else if (cars[i].transmission == car) {
-			indexarr[size] = i;
-			size++;
-		} else if (cars[i].color == car) {
-			indexarr[size] = i;
-			size++;
-		}
+	string date1, date2, date3;
+	string addOrExit;
+	cin >> date1;
+	if (date1 == "min") {
+		int minPrice;
+		int maxPrice = 35000;
+		cout << "Min: ";
+		cin >> minPrice;
+		Size = price(arrSize, minPrice, maxPrice, ptr, cars);
+	} else if (date1 == "max") {
+		int maxPrice;
+		int minPrice = 0;
+		cout << "Max: ";
+		cin >> maxPrice;
+		Size = price(arrSize, minPrice, maxPrice, ptr, cars);
+	} else {
+		Size = findCarsIndex(arrSize, date1, ptr, cars);
 	}
-	printCars(size, ptr, cars);
+	cout << "Add or exit: ";
+	cin >> addOrExit;
+	if (addOrExit == "add") {
+		cin >> date2;
+		int *arr = indexptr;
+ 		if (date2 == "min") {
+			int minPrice;
+			int maxPrice = 35000;
+			cout << "Min: ";
+			cin >> minPrice;
+			Size = priceTwo(Size, minPrice, maxPrice, ptr, arr, cars);
+		} else if (date2 == "max") {
+			int maxPrice;
+			int minPrice = 0;
+			cout << "Max: ";
+			cin >> maxPrice;
+			Size = priceTwo(Size, minPrice, maxPrice, ptr, arr, cars);
+		} else {	
+			size = findCarsIndexTwo(Size, date2, ptr, arr, cars);
+		}
+		printCars(size, arr, cars);
+	} else if (addOrExit == "exit") {
+		printCars(Size, ptr, cars);
+	}
 	return 0;
 }
