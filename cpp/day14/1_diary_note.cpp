@@ -66,64 +66,103 @@ void inputNote() {
 	cout << "Add Note: ";
 	getline(cin, diary.note);
 }
+bool isFileExists(string readFileNames[], string fileName[], int fileLinesCount, int i) {
+	ofstream fileNames("fileNames.txt", ios::app);
+		for (int j = 0; j < fileLinesCount; j++) {
+			if (readFileNames[j] == fileName[i]) {
+				return false;
+			} 
+		}
+		fileNames << fileName[i] << endl;
+		fileNames.close();
+		return true;
+}
 
-void ofstreamFile(string* dateParts) {
+string weekday(int weekNumber) {
+	string weekDay = " ";
+	switch(weekNumber) {
+		case diary.Mon: 
+			weekDay = "Mon";
+			break;
+		case diary.Tue:
+			weekDay = "Tue";
+			break;
+		case diary.Wed: 
+			weekDay = "Wed";
+			break;
+		case diary.Thu: 
+			weekDay = "Thu";
+			break;
+		case diary.Fri: 
+			weekDay = "Fri";
+			break;
+		case diary.Sat: 
+			weekDay = "Sat";
+			break;
+		case diary.Sun: 
+			weekDay = "Sun";
+			break;
+	}
+	return weekDay;
+}
+void ofstreamFile(string* dateParts, bool check, string weekDay) {
 	ofstream file;
 	file.open("notes/" + dateParts[0] + "_" + dateParts[1] + "_" + dateParts[2] + ".txt", ios::app);
+	if (check) {
+		file << weekDay + " " + dateParts[0] + "/" + dateParts[1] + "/" + dateParts[2] << endl;
+	}
 	file << diary.note << endl;
 	file.close();
 }
 
-void weekday(int *weekNumber) {
-switch(*weekNumber)
-	{
-		case diary.Mon: 
-			cout<<"Mon";
-			break;
-		case diary.Tue:
-			cout<<"Tue";
-			break;
-		case diary.Wed: 
-			cout<<"Wed";
-			break;
-		case diary.Thu: 
-			cout<<"Thu";
-			break;
-		case diary.Fri: 
-			cout<<"Fri";
-			break;
-		case diary.Sat: 
-			cout<<"Sat";
-			break;
-		case diary.Sun: 
-			cout<<"Sun";
-			break;
-	}
-}
+
 int main() {
-		string date = "";
-		int day, month, year;
-		string dateParts[3] = {};
-		string *ptr = dateParts;
-		string fileName[50];
-		int weekNumber[10];
-		string addOrExit;
+	string date = "";
+	int day, month, year;
+	string dateParts[3] = {};
+	string *ptr = dateParts;
+	string fileName[50];
+	int weekNumber;
+	string addOrExit;
 	int i = 0;
+	
 	while (true) {
 		date = inputDate();
 		dateParts[0] = "";
 		dateParts[1] = "";
 		dateParts[2] = "";
 		dateTo_dd_mm_yyyy(date, ptr, &day, &month, &year);
-		if (isTrueDate(&day, &month, &year) == false) {
+		if (!(isTrueDate(&day, &month, &year))) {
 			cout << "Date does not exist\n"; 
 			return 0;
 		}
-		weekNumber[i] = weekday_num(day, month, year);
+		weekNumber = weekday_num(day, month, year);
 		cin.ignore();
 		inputNote();
 		fileName[i] = "notes/" + dateParts[0] + "_" + dateParts[1] + "_" + dateParts[2] + ".txt";
-		ofstreamFile(ptr);
+
+		string line;
+		int fileLinesCount = 0;
+		ifstream fileLines("fileNames.txt");
+		while (getline(fileLines, line)) {
+			fileLinesCount++;
+		}
+		string readFileNames[fileLinesCount];
+		string readFile;
+		fileLines.close();
+		
+		ifstream checkFileNames("fileNames.txt");
+		int k = 0;
+		while (getline(checkFileNames, readFile)) {
+			readFileNames[k] = readFile;
+			k++;
+		}
+		checkFileNames.close();
+
+		bool check = isFileExists(readFileNames, fileName, fileLinesCount, i);
+		string weekDay;
+		weekDay = weekday(weekNumber);
+		ofstreamFile(ptr, check, weekDay);
 		do {
 			cout << "Do you want to add another note (command): ";
 			cin >> addOrExit;
@@ -134,16 +173,35 @@ int main() {
 		i++;
 	}
 	int size = i;
-	int *weekPtr = weekNumber;
-	for (int i = 0; i <= size; i++) {
-		weekday(weekPtr + i);
-		cout << "  " << dateParts[0] + "/" + dateParts[1] + "/" + dateParts[2] << endl;
-		string print;
-		ifstream printFile(fileName[i]);
-		while (getline(printFile, print)) {
-			cout << "     Note: " << print << endl;
+		string str;
+		int count = 0;
+		ifstream newFileLines("fileNames.txt");
+		while (getline(newFileLines, str)) {
+			count++;
 		}
-		cout <<	endl;
-	}
+		newFileLines.close();
+	
+		ifstream file("fileNames.txt");
+		int k = 0;
+		string strFile;
+		string fileLinesArr[count];
+		while (getline(file, strFile)) {
+			fileLinesArr[k] = strFile;
+			k++;
+		}
+		file.close();
+		for (int i = 0; i < k; i++) {	
+			string print;
+			ifstream printFile(fileLinesArr[i]);
+			bool isFirstLine = true;
+			while (getline(printFile, print)) {
+				if (!isFirstLine) {
+					cout << "note: ";
+				}
+				cout << print << endl;
+				isFirstLine = false;
+			}
+			cout <<	endl;
+		}
 	return 0;
 }

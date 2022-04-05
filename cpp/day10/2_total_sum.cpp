@@ -34,7 +34,7 @@ int main(int argc, char* argv[]) {
 	int month = atoi(*(argv + 3));
 
 	time_t t = time(0);
-  string dateTime = ctime(&t);
+	string dateTime = ctime(&t);
 	cout << dateTime;
 
 	string currentMonth;

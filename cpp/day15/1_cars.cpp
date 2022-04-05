@@ -3,7 +3,21 @@
 
 using namespace std;
 
-struct Cars {
+struct Filter {
+	string make;
+	string model;
+	int minPrice;
+	int maxPrice;
+	int minMileage;
+	int maxMileage;
+	float minEngineSize;
+	float maxEngineSize;
+	string transmission;
+	string color;
+	bool noFilter = false;
+} filter;
+
+struct Car {
 	string make;
 	string model;
 	int price;
@@ -13,90 +27,125 @@ struct Cars {
 	string color;
 };
 
-int findCarsIndex(int arrSize, string date, int *ptr, Cars *cars) {
-	int size = 0;
-	for (int i = 0; i < arrSize; i++) {
-		if (cars[i].make == date) {
-			ptr[size] = i;
-			size++;
-		} else if (cars[i].transmission == date) {
-			ptr[size] = i;
-			size++;
-		} else if (cars[i].color == date) {
-			ptr[size] = i;
-			size++;
-		} 
+const int MAX_SIZE = 10;
+
+void printTab(string temp, int n) {
+	if (temp.size() < n) {
+		cout << "\t\t | ";
+	} else {
+		cout << "\t | ";
 	}
-	return size;
 }
 
-int price(int arrSize, int minPrice, int maxPrice, int *ptr, Cars *cars) {
-	int size = 0;
-	for (int i = 0; i < arrSize; i++) {
-		if (cars[i].price >= minPrice && cars[i].price <= maxPrice) {
-				ptr[size] = i;
-				size++;
-		}
-	}
-	return size;
-}
-
-int findCarsIndexTwo(int Size, string date, int *ptr, int *arr, Cars *cars) {
-	int size = 0;
-	for (int i = 0; i < Size; i++) {
-		if (cars[ptr[i]].make == date) {
-			arr[size] = i;
-			size++;
-		} else if (cars[ptr[i]].transmission == date) {
-	cout<< " sizetransmission = " << size << endl;
-			arr[size] = i;
-			size++;
-		} else if (cars[ptr[i]].color == date) {
-	cout<< " sizecolor = " << size << endl;
-	cout<< "  ptr[size]= " << ptr[size] << endl;
-			arr[size] = ptr[i];
-	cout<< "  ptr[size]newwww= " << ptr[size] << endl;
-			size++;
-		} 
-	}
-	return size;
-}
-
-int priceTwo(int Size, int minPrice, int maxPrice, int *ptr, int *arr, Cars *cars) {
-	int size = 0;
-	for (int i = 0; i < Size; i++) {
-		if (cars[ptr[i]].price >= minPrice && cars[ptr[i]].price <= maxPrice) {
-				arr[size] = ptr[i];
-				size++;
-		}
-	}
-	return size;
-}
-
-void printCars(int size, int *ptr, Cars *cars) {
+void printCars(int size, Car *cars) {
+	cout << "========================================================================================================\n"
+	<< " Make\t\t | Model\t | Price\t | Mileage\t | Engine Size\t | Transmission\t | Color \n"
+	<< "========================================================================================================\n";
 	for (int i = 0; i < size; i++) {
-		Cars temp = cars[ptr[i]];
-		cout << temp.make << '\t' << temp.model << '\t' <<  temp.price <<  '\t' << temp.mileage << '\t' << temp.engineSize << '\t' << temp.transmission << '\t' << temp.color << endl;
+		Car temp = cars[i];
+		cout << temp.make;
+		printTab(temp.make, 8);
+		cout << temp.model;
+		printTab(temp.model, 5);
+		cout <<  temp.price;
+		printTab(to_string(temp.price), 5);
+		cout << temp.mileage;
+		printTab(to_string(temp.mileage), 2);
+		cout << temp.engineSize << '\t';
+		printTab(to_string(temp.engineSize), 4);
+		cout << temp.transmission;
+		printTab(temp.transmission, 6);
+		cout << temp.color;
+		cout << endl << "--------------------------------------------------------------------------------------------------------\n";
 	}
 }
+
+Car* applyFilters(Car * cars, int &size) {
+	if (filter.noFilter) {
+		return cars;
+	}
+	Car* result  = new Car [size];
+	int index = 0;
 	
+	for(int i = 0; i < MAX_SIZE; i++) {
+		if(!(filter.make != "" 				&& cars[i].make != filter.make
+			|| filter.model != "" 			&& cars[i].model != filter.model
+			|| filter.minPrice 				&& cars[i].price < filter.minPrice
+			|| filter.maxPrice 				&& cars[i].price > filter.maxPrice
+			|| filter.minMileage 			&& cars[i].mileage < filter.minMileage
+			|| filter.maxMileage 			&& cars[i].mileage > filter.maxMileage
+			|| filter.minEngineSize			&& cars[i].engineSize < filter.minEngineSize
+			|| filter.maxEngineSize			&& cars[i].engineSize > filter.maxEngineSize
+			|| filter.transmission != "" 	&& cars[i].transmission != filter.transmission
+			|| filter.color != "" 			&& cars[i].color != filter.color)) {
+				result[index] = cars[i];
+				index++;
+		}
+	}
+	size = index;
+	return result;
+}
+
+bool setFilter(int key) {
+	if(key < 1 || key > 10) {
+		filter.noFilter = true;
+		return false;
+	}
+	string value;
+	cout << "Value: ";
+	cin >> value;
+	switch(key) {
+		case 1:
+			filter.make = value;
+			break;
+		case 2:
+			filter.model = value;
+			break;
+		case 3:
+			filter.minPrice = stoi(value);
+			break;
+		case 4:
+			filter.maxPrice = stoi(value);
+			break;
+		case 5:
+			filter.minMileage = stoi(value);
+			break;
+		case 6:
+			filter.maxMileage = stoi(value);
+			break;
+		case 7:
+			filter.minEngineSize = stof(value);
+			break;
+		case 8:
+			filter.maxEngineSize = stof(value);
+			break;
+		case 9:
+			filter.transmission = value;
+			break;
+		case 10:
+			filter.color = value;
+			break;
+	}
+	return true;
+}
+
 int main() {
-	string fileDate;
+	string fileData;
 	ifstream file("cars.txt");
 	int arrSize = 10;
-	Cars cars[arrSize];
+	Car cars[arrSize];
 	int k = 0;
 	string word[7];
-	while (getline(file, fileDate)) {
+	while (getline(file, fileData)) {
 		int j = 0;
 		word[j] = "";
-		for (int i = 0; i < fileDate.length(); i++) {
-			if (fileDate[i] == ' ') {
+		for (int i = 0; i < fileData.length(); i++) {
+			if (fileData[i] == ' ') {
 				j++;
 				word[j] = "";
 				continue;
 			}
-			word[j] += fileDate[i];
+			word[j] += fileData[i];
 		}
 		cars[k].make = word[0];
 		cars[k].model = word[1];
@@ -108,71 +157,19 @@ int main() {
 		k++;
 	}
 	file.close();
-
-
 	cout << "Select filter\n"
-	<< "=======================================================================\n";
-	cout << "Make";
-	for (int i = 0; i < arrSize; i++) {
-		if (cars[i].make != cars[i - 1].make) {
-			cout << "\t" << cars[i].make << "\t\t";
-			if (i == 0) {
-				cout << "Transmission\t automatic\t Color\t" << cars[i].color;
-			} else if (i == 2) {
-				cout << "\t\t manual\t\t\t " << cars[i].color;
-			} else if (i == 3) {
-				cout << "\t\t\t\t " << cars[6].color;
-			}
-			cout << endl;
+	<< "============================================================================================================================\n";
+	cout << "1) make, 2) model, 3) minPrice 4) maxPrice, 5) minMileage 6) maxMileage 7) minEngine 8) maxEngine 9) Transmission, 10) Color"  << endl;
+	cout << "* Other whice wil be shown all cars " << endl
+	<< "* To see the search result write letters " << endl;
+	int filterKey;
+	while (cin >> filterKey) {
+		if (!setFilter(filterKey)) {
+			break;
 		}
 	}
-
-	cout << "\n \t\t <<<<<<<<<<<<<< Price (Min // Max) >>>>>>>>>>>>>> \n\n";
-	int Size, size;
-	int indexarr[10] = {};
-	int indexptr[10] = {};
-	int *ptr = indexarr;
-	string date1, date2, date3;
-	string addOrExit;
-	cin >> date1;
-	if (date1 == "min") {
-		int minPrice;
-		int maxPrice = 35000;
-		cout << "Min: ";
-		cin >> minPrice;
-		Size = price(arrSize, minPrice, maxPrice, ptr, cars);
-	} else if (date1 == "max") {
-		int maxPrice;
-		int minPrice = 0;
-		cout << "Max: ";
-		cin >> maxPrice;
-		Size = price(arrSize, minPrice, maxPrice, ptr, cars);
-	} else {
-		Size = findCarsIndex(arrSize, date1, ptr, cars);
-	}
-	cout << "Add or exit: ";
-	cin >> addOrExit;
-	if (addOrExit == "add") {
-		cin >> date2;
-		int *arr = indexptr;
- 		if (date2 == "min") {
-			int minPrice;
-			int maxPrice = 35000;
-			cout << "Min: ";
-			cin >> minPrice;
-			Size = priceTwo(Size, minPrice, maxPrice, ptr, arr, cars);
-		} else if (date2 == "max") {
-			int maxPrice;
-			int minPrice = 0;
-			cout << "Max: ";
-			cin >> maxPrice;
-			Size = priceTwo(Size, minPrice, maxPrice, ptr, arr, cars);
-		} else {	
-			size = findCarsIndexTwo(Size, date2, ptr, arr, cars);
-		}
-		printCars(size, arr, cars);
-	} else if (addOrExit == "exit") {
-		printCars(Size, ptr, cars);
-	}
+	int size = MAX_SIZE;
+	Car * filteredCars = applyFilters(cars, size);
+	printCars(size, filteredCars);
 	return 0;
 }
