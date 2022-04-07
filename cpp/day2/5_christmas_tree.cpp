@@ -35,19 +35,19 @@ int main() {
 	i = 1;
 	while (i <= num) {
 		int j = 1;
-		while (j <= num - i) {
-			cout << " ";
-			j++;
-		}
-		j = 1;
-		while (j <= i) {
-			cout << "*";
+		while (j <= num) {
+			if (j <= num - i) {
+				cout << " ";
+			} else {
+				cout << "*";
+			}
 			j++;
 		}
 		cout << "\n";
 		i++;
 	}
 	cout << "\n";
+
 
 /*Third christas tree
  *
@@ -77,18 +77,18 @@ int main() {
 	i = 1;
         while (i <= num) {
                 int j = 1;
-                while (j <= num - i) {
+                while (j <= num) {
+					if (j <= num - i) {
                         cout << " ";
-                        j++;
-                }
-                j = 1;
-                while (j <= i) {
+					} else {
                         cout << "* ";
+					}
                         j++;
                 }
-                cout << "\n";
+               cout << "\n";
                 i++;
         }
         cout << "\n";
+	
 	return 0;
 }
