@@ -53,7 +53,7 @@ Polynomial Polynomial::Multiply(Polynomial other) {
 	return result;
 }
 
-Polynomial Polynomial::Multiply(int number) {
+Polynomial Polynomial::MultiplyByNumber(int number) {
     int newN = _n;
     int *newA = new int[newN + 1]{0};
     for (int i = newN; i >= 0; --i) {
@@ -61,6 +61,10 @@ Polynomial Polynomial::Multiply(int number) {
     }
     Polynomial result(newN, newA);
     return result;
+}
+
+Polynomial Polynomial::Subtract(Polynomial other) {
+	return this->Add(other.MultiplyByNumber(-1));
 }
 
 void Polynomial::setN(int n) {

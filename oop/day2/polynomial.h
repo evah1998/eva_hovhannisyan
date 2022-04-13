@@ -14,10 +14,10 @@ class Polynomial {
 		int getA(int) const;
 		Polynomial(int n, int* a);
 
-		Polynomial Multiply(int);
 		Polynomial Multiply(Polynomial);
+		Polynomial MultiplyByNumber(int);
 		Polynomial Add(Polynomial);
-		int Subsract();
+		Polynomial Subtract(Polynomial);
 		void print();
 };
 
