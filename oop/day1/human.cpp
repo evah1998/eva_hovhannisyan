@@ -48,6 +48,7 @@ void walk() {
 	int step = 0;
 	step++;
 }
+/*
 HomoSapiense::HomoSapiense(string surname, int year, int month, int day, string gender, string name, string fatherName) 
 	:Human(surname, year, month, day, gender) {
 	_name = name;
@@ -59,4 +60,4 @@ Programmer::Programmer(string surname, int year, int month, int day, string gend
 	_favProgrammingLanguage = favProgrammingLanguage;
 	_company = company;
 }
-
+*/

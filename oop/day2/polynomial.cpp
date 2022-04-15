@@ -17,7 +17,7 @@ void Polynomial::print() {
 			if (i != _n && _a[i] > 0) {
 				cout << "+";
   			}
-			if (_a[i] != 1) {
+			if (i == 0 || _a[i] != 1) {
 				cout << _a[i];
 			}
 			if (i != 0) {
@@ -40,6 +40,10 @@ Polynomial Polynomial::Add(Polynomial other) {
 	return Polynomial(newN, newA);
 }
 
+Polynomial Polynomial::operator+(const Polynomial& other) {
+	return this->Add(other);
+}
+
 Polynomial Polynomial::Multiply(Polynomial other) {
 	int newN = _n + other._n;
 	int *newA = new int[newN + 1]{0};
@@ -53,6 +57,10 @@ Polynomial Polynomial::Multiply(Polynomial other) {
 	return result;
 }
 
+Polynomial Polynomial::operator*(const Polynomial& other) {
+	return this->Multiply(other);
+}
+
 Polynomial Polynomial::MultiplyByNumber(int number) {
     int newN = _n;
     int *newA = new int[newN + 1]{0};
@@ -63,10 +71,26 @@ Polynomial Polynomial::MultiplyByNumber(int number) {
     return result;
 }
 
+/*Polynomial Polynomial::operator*(int number) {
+	return this->MultiplyByNumber(int number);	
+}
+*/
 Polynomial Polynomial::Subtract(Polynomial other) {
 	return this->Add(other.MultiplyByNumber(-1));
 }
 
+Polynomial Polynomial::operator-(const Polynomial& other) {
+	return this->Subtract(other);
+}
+/*
+Polynomial& Polynomial::operator+=(const Polynomial& other) {
+	int _n = max(_n, other._n);
+	for (int i = 0; i <= _n; ++i) {
+		_a[i] = _a[i] + other._a[i];
+	}
+	return *this;
+}
+*/
 void Polynomial::setN(int n) {
 	_n = n;	
 }

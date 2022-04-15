@@ -7,7 +7,7 @@ Polynomial newPolynomial();
 
 int main() {
 		int Operator;
-		cout << "1.Add\n2.Multiply\n3.Multiply By Number\n";
+		cout << "1.Add\n2.Multiply\n3.Multiply By Number\n4.Subtract\n";
 		cout << "Input option: 1 | 2 | 3 | 4: ";
 		cin >> Operator;
         Polynomial p = newPolynomial();
@@ -15,7 +15,7 @@ int main() {
 			case 1:
 				{
         			Polynomial p1 = newPolynomial();
-					Polynomial result = p.Add(p1);
+					Polynomial result = p + p1;
 					p.print();
 					cout << "+ ";
         			p1.print();
@@ -26,7 +26,7 @@ int main() {
  			case 2:
 				{
         			Polynomial p1 = newPolynomial();
-					Polynomial result = p.Multiply(p1);
+					Polynomial result = p * p1;
 					cout << "(";
 					p.print();
 					cout << ") * (";
@@ -48,7 +48,7 @@ int main() {
 			case 4:
 				{
         			Polynomial p1 = newPolynomial();
-					Polynomial result = p.Subtract(p1);
+					Polynomial result = p - p1;
 					p.print();
 					cout << "- ";
         			p1.print();

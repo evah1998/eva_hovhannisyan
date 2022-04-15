@@ -1,6 +1,6 @@
 using namespace std;
-#ifndef DATE_H
-#define DATE_H
+#ifndef HUMAN
+#define HUMAN
 
 class Human {
 private:
@@ -16,7 +16,7 @@ public:
 	bool eat();
 	void walk();	
 };
-
+/*
 class HomoSapiense:Human {
 private:
 	string _name;
@@ -34,5 +34,5 @@ public:
 	Programmer(string surname, int year, int month, int day, string gender, string name, string fatherName, string favProgrammingLanguage, string company);
 	void writeProgram();
 };
-
+*/
 #endif

@@ -19,6 +19,16 @@ class Polynomial {
 		Polynomial Add(Polynomial);
 		Polynomial Subtract(Polynomial);
 		void print();
+		Polynomial operator+(const Polynomial&);
+		Polynomial operator*(const Polynomial&);
+		Polynomial operator-(const Polynomial&);
+		Polynomial operator+=(const Polynomial&);
+		Polynomial operator-=(const Polynomial&);
+		Polynomial operator*=(const Polynomial&);
+		Polynomial operator*(const int n);
+		Polynomial operator==(const Polynomial&);
+		Polynomial operator<<(const Polynomial&);
+		Polynomial operator>>(const Polynomial&);
 };
 
 #endif
