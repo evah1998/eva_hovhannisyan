@@ -11,8 +11,12 @@ Polynomial::Polynomial(int n, int* a) {
 	}
 }
 
+Polynomial::Polynomial() {
+
+}
+
 void Polynomial::print() {
-	for(int i = _n; i >= 0; --i) {
+	for (int i = _n; i >= 0; --i) {
 		if (_a[i] != 0) {
 			if (i != _n && _a[i] > 0) {
 				cout << "+";
@@ -71,10 +75,10 @@ Polynomial Polynomial::MultiplyByNumber(int number) {
     return result;
 }
 
-/*Polynomial Polynomial::operator*(int number) {
-	return this->MultiplyByNumber(int number);	
+const Polynomial Polynomial::operator*(int number) {
+	return this->MultiplyByNumber(number);	
 }
-*/
+
 Polynomial Polynomial::Subtract(Polynomial other) {
 	return this->Add(other.MultiplyByNumber(-1));
 }
@@ -82,15 +86,80 @@ Polynomial Polynomial::Subtract(Polynomial other) {
 Polynomial Polynomial::operator-(const Polynomial& other) {
 	return this->Subtract(other);
 }
-/*
+
 Polynomial& Polynomial::operator+=(const Polynomial& other) {
-	int _n = max(_n, other._n);
+	_n = max(_n, other._n);
 	for (int i = 0; i <= _n; ++i) {
 		_a[i] = _a[i] + other._a[i];
 	}
 	return *this;
 }
+
+Polynomial& Polynomial::operator*=(const Polynomial& other) {
+	_n = _n + other._n;
+	int *newA = new int[_n + 1]{0};
+	for (int deg = _n; deg >= 0; --deg) {
+		for (int i = deg; i >= 0 && deg - i <= other._n; --i) {
+			int j = deg - i;
+			newA[deg] += (_a[i] * other._a[j]);
+		}
+	}
+	for (int i = 0; i <= _n; ++i) {
+		_a[i] = newA[i];
+	}
+	return *this;
+}
+
+/*
+Polynomial& Polynomial::operator-=(const Polynomial& other) {
+	this+=(other * (-1));
+	return *this;
+}
 */
+
+bool Polynomial::operator==(const Polynomial& other) {
+	if (_n != other._n) {
+		return false;
+	}
+	for (int k = 0; k <= _n; ++k) {
+		if (_a[k] != other._a[k]) {
+			return false;
+		}
+	}
+	return true;
+}
+
+ostream& operator<<(ostream &out, const Polynomial& other) {
+	for (int i = other._n; i >= 0; --i) {
+		if (other._a[i] != 0) {
+			if (i != other._n && other._a[i] > 0) {
+				out << "+";
+  			}
+			if (i == 0 || other._a[i] != 1) {
+				out << other._a[i];
+			}
+			if (i != 0) {
+				out << "X";
+				if (i != 1) {
+					out << "^" << i;
+				}
+			}
+		}
+	}
+ 	out << " ";
+	return out;
+}
+
+istream& operator>>(istream &input, Polynomial& other) {
+    cout << "Max degree of palynomial =  ";
+    input >> other._n;
+    for(int i = other._n; i >= 0; --i) {
+        cout << "a [" << i << "] = ";
+        input >> other._a[i];
+    }
+    return input;
+}
+
 void Polynomial::setN(int n) {
 	_n = n;	
 }

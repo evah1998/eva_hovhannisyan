@@ -7,8 +7,8 @@ Polynomial newPolynomial();
 
 int main() {
 		int Operator;
-		cout << "1.Add\n2.Multiply\n3.Multiply By Number\n4.Subtract\n";
-		cout << "Input option: 1 | 2 | 3 | 4: ";
+		cout << "1.+\n2.*\n3.* Number\n4.-\n5.+=\n6.*=\n7.-=\n8.==\n";
+		cout << "Input option: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8: ";
 		cin >> Operator;
         Polynomial p = newPolynomial();
 		switch(Operator) {
@@ -16,23 +16,14 @@ int main() {
 				{
         			Polynomial p1 = newPolynomial();
 					Polynomial result = p + p1;
-					p.print();
-					cout << "+ ";
-        			p1.print();
-					cout << " = ";
-					result.print();
+					cout << p << "+ " << p1 << " = " << result;
 					break;
 				}
  			case 2:
 				{
         			Polynomial p1 = newPolynomial();
 					Polynomial result = p * p1;
-					cout << "(";
-					p.print();
-					cout << ") * (";
-        			p1.print();
-					cout << ") = ";
-					result.print();
+					cout << "(" << p << ") * (" << p1 << ") = " << result;
 					break;
 				}
         	case 3:
@@ -40,23 +31,54 @@ int main() {
 					int n;
 					cout << "Input number: ";
 					cin >> n;
-					Polynomial result = p.MultiplyByNumber(n);
-					p.print();
-					result.print();
+					Polynomial result = p * n;
+					cout << p << result;
 					break;
 				}
 			case 4:
 				{
         			Polynomial p1 = newPolynomial();
 					Polynomial result = p - p1;
-					p.print();
-					cout << "- ";
-        			p1.print();
-					cout << " = ";
-					result.print();
+					cout << p << "- " << p1 << " = " << result;
 					break;
 				}
- 		
+ 			case 5:
+				{
+        			Polynomial p1 = newPolynomial();
+					cout << p << " + " << p1 << " = ";
+					p += p1;
+					cout << p;
+					break;
+				}
+ 			case 6:
+				{
+        			Polynomial p1 = newPolynomial();
+					cout << p << " * " << p1 << " = ";
+					p *= p1;
+					cout << p;
+					break;
+				}
+/*			case 7:
+				{
+        			Polynomial p1 = newPolynomial();
+					cout << p << " - " << p1 << " = ";
+					p -= p1;
+					cout << p;
+					break;
+				}
+*/ 			
+ 			case 8:
+				{
+        			Polynomial p1 = newPolynomial();
+					cout << p << " == " << p1 << " is ";
+					if (p == p1) {
+						cout << "true\n";
+						break;
+					}
+					cout << "false\n";
+					break;
+				}
+
 		}        
 		cout << endl;
         return 0;
