@@ -110,12 +110,12 @@ Polynomial& Polynomial::operator*=(const Polynomial& other) {
 	return *this;
 }
 
-/*
+
 Polynomial& Polynomial::operator-=(const Polynomial& other) {
-	this+=(other * (-1));
+	*this = this->Subtract(other);
 	return *this;
 }
-*/
+
 
 bool Polynomial::operator==(const Polynomial& other) {
 	if (_n != other._n) {

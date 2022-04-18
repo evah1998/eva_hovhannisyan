@@ -58,7 +58,7 @@ int main() {
 					cout << p;
 					break;
 				}
-/*			case 7:
+			case 7:
 				{
         			Polynomial p1 = newPolynomial();
 					cout << p << " - " << p1 << " = ";
@@ -66,7 +66,7 @@ int main() {
 					cout << p;
 					break;
 				}
-*/ 			
+ 			
  			case 8:
 				{
         			Polynomial p1 = newPolynomial();
