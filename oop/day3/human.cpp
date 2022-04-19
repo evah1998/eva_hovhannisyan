@@ -87,6 +87,3 @@ void Human::SetHealthLevel() {
   _health_level = health_level;
 }
 
-int Human::GetHealthLevel() const {
-  return _health_level;
-}

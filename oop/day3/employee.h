@@ -6,20 +6,19 @@
 
 class Employee:public HomoSapience {
   private:
-      unsigned int _salary = 9;
+      unsigned int _salary;
 	  unsigned int _experience;
 	  bool _freeFromWork;
-  protected:
 	  unsigned int _workTime;
   public:
 	Employee(const HomoSapience& homoSapience, int salary, unsigned int workTime, unsigned int experience, bool freeFromWork);
 	Employee(const Employee&) = default;
-      void StartWork();
-//      void BreakTime(Food _food, Drinks _drink);
+      virtual void StartWork();
+      void BreakTime();
 	  virtual void EndWork();
-	  void SalaryOfMonth();
 	  virtual void Work();
 	  void GoHoliday();
+	  void SetWorkTime(const int workTime);
 	  void SetSalary(int salary);
 	  int GetSalary() const;
 };

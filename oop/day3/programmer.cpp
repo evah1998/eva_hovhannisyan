@@ -8,3 +8,19 @@ using namespace std;
     _favProgrammingLanguage = favProgrammingLanguage;
     _company = company;
 }
+
+void Employee::Work() override {
+    _freeFromWork = false;
+    int time = 0;
+    while (time <= _workTime) {
+        if (time == _workTime / 2) {
+         	BreakTime();
+            ++time;
+            continue;
+        }
+        ++time;
+        EndWork();
+    }
+}
+
+
