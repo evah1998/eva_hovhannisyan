@@ -29,7 +29,7 @@ void Employee::SetSalary() {
 	}
 }
 
-void Employee::SetWorkTime(const int workTime) {
+void Employee::SetWorkTime(int workTime) {
 	_workTime = workTime;
 }
 
@@ -38,14 +38,14 @@ int Employee::GetSalary() const {
 }
 
 void Employee::BreakTime() {
-	if (_isHungry) {
+	if (_hungerDegree > 15) {
 		Eat(Food _food);
 	}
-	if (_isThirsty) {
+	if (_thirstDegree > 15) {
 		Drink(Drink _drink);
 	}
-	if (_isTired) {
-		Relax();	
+	if (_tirednessDegree > 15) {
+		Relax();
 	}
 }
 

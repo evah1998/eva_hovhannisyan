@@ -16,10 +16,13 @@ HomoSapience::HomoSapience(const Human& human, Religion religion, Race race, Nat
 }
 
 void HomoSapience::GoToGym() {
-  if (_health_level < 100) {
-    ++_health_level;
-  }
-
-  --_weight;
+    if (_health_level < 100) { 
+         ++_health_level;
+    }
+    --_weight;
+    _thirstDegree -= 3;
+    ++_hungerDegree;
+    ++_tirednessDegree;
 }
 
+void smok heltlevel --

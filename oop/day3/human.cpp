@@ -3,41 +3,31 @@
 
 using namespace std;
 
-Human::Human(Gender gender, EyeColour eye_colour, HairColour hair_colour, Human* father, Human* mother, int health_level, int mental_health, int height, int weight) {
+Human::Human(Gender gender, EyeColour eye_colour, HairColour hair_colour, Human* father, Human* mother, int health_level, int tirednessDegree, int mental_health, int height, int weight, int hungerDegree, int thirstDegree) {
 		_gender = gender;
 		_eye_colour = eye_colour;
       	_hair_colour = hair_colour;
       	_father = father;
       	_mother = mother;
       	_health_level = health_level;
+		_tirednessDegree = tirednessDegree;
       	_mental_health = mental_health;
      	_height = height;
      	_weight = weight;
-}
-
-void Human::Digest() {
-  if (_health_level < 100) {
-    ++_health_level;
-  }
-} 
-
-void Human::Walk() {
-  if (_health_level < 100) {
-    ++_health_level;
-  }
-
-  --_weight;
+		_hungerDegree = hungerDegree; 
+		_thirstDegree = thirstDegree;
 }
 
 void Human::Eat(Food food) {
   if ((food == banana || food == apple || food == yogurt || food == honey) && _health_level < 100) {
     ++_health_level;
+	_hungerDegree -= 3; 
   }
 
   if ((food == chips || food == pizza || food == burger) && _health_level < 100) {
     --_health_level;
+	_hungerDegree -= 5;
   }
-  
 	++_weight;
 }
 
@@ -48,7 +38,31 @@ void Human::Drink(Drinks drink) {
 
   if (drink == milk || drink == water || drink == tea || drink == juice) {
     _health_level = (_health_level >= 99 && _health_level <= 100) ? 100 : ++_health_level;
+	_thirstDegree -= 3;
   }
+}
+
+void Human::Sleep(int tirednessDegree, int hour) {
+	if (hour < 8) {
+		--_mental_health;
+		--_tirednessDegree;
+	}
+	_tirednessDegree = 0;
+}
+
+void Joy() {
+	++_mental_health;
+	_health_level += 0.2;
+}
+
+void Walk() {
+	if (_health_level < 100) {
+		 ++_health_level;
+	}
+	_weight -= 0.2;
+	_thirstDegree -= 2;
+	++_hungerDegree;
+	++_tirednessDegree;
 }
 
 void Human::SetEyeColour(EyeColour eye_colour) {
@@ -83,7 +97,20 @@ Human* Human::GetMother() const {
   return _mother;
 }
 
-void Human::SetHealthLevel() {
+void Human::SetHealthLevel(int health_level) {
   _health_level = health_level;
 }
+
+int Human::GetHealthLevel() {
+	return _health_level;
+}
+
+void Human::SetTirednessDegree (int tirednessDegree) {
+	_tirednessDegree = tirednessDegree; 
+}
+
+int Human::GetTrednessDegree () const {
+  return _tirednessDegree;
+}
+
 
