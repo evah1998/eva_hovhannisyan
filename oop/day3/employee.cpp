@@ -12,12 +12,14 @@ Employee::Employee(const HomoSapience& homoSapience, int salary, unsigned int wo
 }
 
 int countOfMonthWorkingDays = 0;
+int month = 0;
 
 void Employee::StartWork() {
+	_freeFromWork = false;
 	int time = 0;
 	while (time <= _workTime) {
 		if (time == _workTime / 2) {
-			BreakTime();
+//			BreakTime(Food food, Drinks drink);
 			++time;
 			continue;
 		}
@@ -33,7 +35,12 @@ void Employee::SalaryOfMonth() {
 		}
 		StartWork();
 	}
-	GetSalary();		
+	GetSalary();
+	++month;
+	if (month == 11) {
+		GoHoliday();
+		++_experience;
+	}
 }
 
 void Employee::SetSalary(int salary) {
@@ -43,4 +50,13 @@ void Employee::SetSalary(int salary) {
 int Employee::GetSalary() const {
 	return _salary;
 }
+/*
+void Employee::BreakTime(Food _food, Drink _drink) {
+	Eat(_food);
+	Drink(_drink);
+	Relax();	
+}
+*/
+
+
 

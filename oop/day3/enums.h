@@ -34,7 +34,7 @@ enum Food {
   burger
 };
  
-enum Drink {
+enum Drinks {
   water = 1,
   juice,
   tea,

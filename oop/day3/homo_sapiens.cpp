@@ -15,4 +15,11 @@ HomoSapience::HomoSapience(const Human& human, Religion religion, Race race, Nat
 	_intelectLevel = intelectLevel;
 }
 
+void HomoSapience::GoToGym() {
+  if (_health_level < 100) {
+    ++_health_level;
+  }
+
+  --_weight;
+}
 
