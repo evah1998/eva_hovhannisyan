@@ -5,6 +5,7 @@ using namespace std;
 
 Linked_list::Linked_list()
 {
+	count = 0;
     head = NULL;
     tail = NULL;
 }
@@ -30,6 +31,7 @@ void Linked_list::Add(int n)
         tail->next = tmp;
         tail = tail->next;
     }
+	++count;
 }
 
 ostream& operator << (ostream &out, const Linked_list& a) 
@@ -45,20 +47,24 @@ ostream& operator << (ostream &out, const Linked_list& a)
     return out;
 }
 
-void Linked_list::AddAt(Node *a, int value)
+void Linked_list::AddAt(int index, int value)
 {
+	Node* prev = GetElementAt(index - 1);
     Node* p = new Node;
     p->data = value;
-    p->next = a->next;
-    a->next = p;
+    p->next = prev->next;
+    prev->next = p;
+	++count;
 }
 
-void Linked_list::RemoveAt(Node *before_del)
+void Linked_list::RemoveAt(int index)
 {
+	Node* prev = GetElementAt(index - 1);
     Node* temp;
-    temp = before_del->next;
-    before_del->next = temp->next;
+    temp = prev->next;
+    prev->next = temp->next;
     delete temp;
+	--count;
 }
 
 void Linked_list::Remove()
@@ -72,22 +78,36 @@ void Linked_list::Remove()
     tmp->next = NULL;
     delete tail;
     tail = tmp;
+	--count;
 }
 
-int Linked_list::GetElementAt(int index) {
+Node* Linked_list::GetElementAt(int index) {
     Node* tmp = head;
     for (int i = 1; i < index; ++i) {
         tmp = tmp->next;
     }
+    return tmp;
+}
+
+int Linked_list::GetDataElementAt(int index) {
+    Node* tmp ;
+	tmp = GetElementAt(index); 
     return tmp->data;
 }
+
 int Linked_list::Count() {
-    Node *tmp = head;
-    int count = 1;
-    while (tmp != tail)
-    {
-        tmp = tmp->next;
-        ++count;
-    }
     return count;
+}
+
+Linked_list::~Linked_list() {
+    Node* current_node = head;
+    Node* next = NULL;
+    while (current_node) {
+        next = current_node->next;
+        delete current_node;
+        current_node = next;
+    }
+    head = NULL;
+    tail = NULL;
+    count = 0;
 }

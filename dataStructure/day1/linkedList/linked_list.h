@@ -13,16 +13,19 @@ public:
 class Linked_list
 {
 private:
+	int count;
     Node *head,*tail;
 public:
     Linked_list();
+	~Linked_list();
     Node* getHead();
     friend ostream& operator << (ostream &out, const Linked_list&);
     void Add(int n);
-    void AddAt(Node *a, int value);
-    void RemoveAt(Node *before_del);
+    void AddAt(int index, int value);
+    void RemoveAt(int index);
     void Remove();
-    int GetElementAt(int index);
+    Node* GetElementAt(int index);
+    int GetDataElementAt(int index);
     int Count();
 };
 

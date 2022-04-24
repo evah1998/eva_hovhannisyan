@@ -16,11 +16,11 @@ int main()
     cout << a;
     
     cout << "Add an element after the 4-th element\n";
-    a.AddAt(a.getHead()->next->next->next, 10);
+    a.AddAt(5, 10);
     cout << a;
     
     cout << "Delete element 3-rd\n";
-    a.RemoveAt(a.getHead()->next);
+    a.RemoveAt(3);
     cout << a;
     
     cout << "Add an element from the end\n";
@@ -31,7 +31,7 @@ int main()
     a.Remove();
     cout << a;
     
-    cout << "The 5-th element = " << a.GetElementAt(5) << endl;
+    cout << "The 5-th element = " << a.GetDataElementAt(5) << endl;
 
     cout << "Count = " << a.Count() << endl;
     return 0;

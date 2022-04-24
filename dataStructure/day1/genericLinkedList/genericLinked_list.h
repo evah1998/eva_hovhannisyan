@@ -15,16 +15,20 @@ template<class T>
 class Linked_list
 {
 private:
+	int count;
     Node<T> *head,*tail;
 public:
     Linked_list();
+	~Linked_list();
     Node<T>* getHead();
-    friend ostream& operator << (ostream &out, const Linked_list<T>& );
+	template<class Type>
+    friend ostream& operator << (ostream &out, const Linked_list<Type>& );
     void Add(T n);
-    void AddAt(Node<T> *a, T value);
-    void RemoveAt(Node<T> *before_del);
+    void AddAt(int index, T value);
+    void RemoveAt(int index);
     void Remove();
-    T GetElementAt(int index);
+    Node<T>* GetElementAt(int index);
+    T GetDataElementAt(int index);
     int Count();
 };
 
