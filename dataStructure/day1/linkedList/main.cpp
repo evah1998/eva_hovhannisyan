@@ -1,11 +1,11 @@
 #include <iostream>
-#include "linked_list.h"
+#include "linkedList.h"
 
 using namespace std;
 
 int main()
 {
-    Linked_list a;
+    LinkedList a;
     int number;
     cout << "Make a list of 20 element\n";
     srand(time(0));
@@ -28,7 +28,7 @@ int main()
     cout << a;
     
     cout << "Delete the last element\n";
-    a.Remove();
+    a.RemoveLast();
     cout << a;
     
     cout << "The 5-th element = " << a.GetDataElementAt(5) << endl;
