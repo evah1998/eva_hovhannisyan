@@ -7,10 +7,10 @@ LinkedList::LinkedList()
     _tail = NULL;
 }
 
-void LinkedList::Add(int element)
+void LinkedList::Add(int value)
 {
     Node *tmp = new Node;
-    tmp->data = element;
+    tmp->data = value;
     tmp->next = NULL;
 
     if(_head == NULL)
@@ -38,12 +38,18 @@ void LinkedList::AddAt(int index, int value)
 
 void LinkedList::RemoveAt(int index)
 {
-    if (Count() > 1) {
-        Node* prev = GetElementAt(index - 1);
-        Node* temp = prev->next;
-        prev->next = temp->next;
-        delete temp;
-        --_count;
+    if (Count() > 1 && index < Count()) {
+		if (index > 0) {
+        	Node* prev = GetElementAt(index - 1);
+        	Node* temp = prev->next;
+        	prev->next = temp->next;
+        	delete temp;
+        	--_count;
+		} else if (index == 0) {
+			Node* tmp = _head->next;
+			delete _head;
+			_head = tmp;
+		}
     } else {
         _count = 0;
         _head = NULL;
