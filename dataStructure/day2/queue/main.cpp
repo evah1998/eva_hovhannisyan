@@ -1,11 +1,10 @@
 #include <iostream>
-#include "../linkedList/linkedList.h"
-#include "deque.h"
+#include "queue.h"
 
 using namespace std;
 
 int main() {
-    Deque a;
+    Queue a;
     int number;
     cout << "Make a list of 15 element\n";
     srand(time(0));
@@ -14,10 +13,7 @@ int main() {
         a.PushBack(number);
     }
     cout << a;
-    a.PushFront(32);
-    cout << "Add from the beginning " << endl << a;
     cout << "Remove first element - " << a.PopFront() << endl << a;
-    cout << "Remov last element - " << a.PopBack() << endl << a;
 
     return 0;
 }

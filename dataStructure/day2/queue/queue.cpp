@@ -1,4 +1,5 @@
 #include "queue.h"
+
 Queue::~Queue() {
     _queueContainer.~LinkedList();
 }

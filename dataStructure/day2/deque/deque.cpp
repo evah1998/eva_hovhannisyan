@@ -1,4 +1,5 @@
 #include "deque.h"
+
 Deque::~Deque() {
     _dequeContainer.~LinkedList();
 }

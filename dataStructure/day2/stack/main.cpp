@@ -1,5 +1,4 @@
 #include <iostream>
-#include "../linkedList/linkedList.h"
 #include "stack.h"
 
 using namespace std;

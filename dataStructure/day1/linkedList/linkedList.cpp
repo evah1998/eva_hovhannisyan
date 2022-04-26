@@ -2,7 +2,7 @@
 
 LinkedList::LinkedList()
 {
-	_count = 0;
+    _count = 0;
     _head = NULL;
     _tail = NULL;
 }
@@ -23,16 +23,24 @@ void LinkedList::Add(int value)
         _tail->next = tmp;
         _tail = _tail->next;
     }
-	++_count;
+    ++_count;
 }
 
 void LinkedList::AddAt(int index, int value)
 {
-	Node* prev = GetElementAt(index - 1);
     Node* newNode = new Node;
     newNode->data = value;
-    newNode->next = prev->next;
-    prev->next = newNode;
+    if (index == 0)
+    {
+        newNode->next = _head;
+        _head = newNode;
+    }
+    else 
+    {
+	    Node* prev = GetElementAt(index - 1);
+        newNode->next = prev->next;
+        prev->next = newNode;
+    }
 	++_count;
 }
 
@@ -49,6 +57,7 @@ void LinkedList::RemoveAt(int index)
 			Node* tmp = _head->next;
 			delete _head;
 			_head = tmp;
+            --_count;
 		}
     } else {
         _count = 0;

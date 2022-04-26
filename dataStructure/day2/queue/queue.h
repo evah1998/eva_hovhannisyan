@@ -1,7 +1,7 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-#include "../linkedList/linkedList.h"
+#include "../../day1/linkedList/linkedList.h"
 
 class Queue {
     private:
