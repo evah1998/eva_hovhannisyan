@@ -1,42 +1,33 @@
 #include "linkedList.h"
 
-LinkedList::LinkedList()
-{
+LinkedList::LinkedList() {
     _count = 0;
     _head = NULL;
     _tail = NULL;
 }
 
-void LinkedList::Add(int value)
-{
+void LinkedList::Add(int value) {
     Node *tmp = new Node;
     tmp->data = value;
     tmp->next = NULL;
 
-    if(_head == NULL)
-    {
+    if(_head == NULL) {
         _head = tmp;
         _tail = tmp;
-    }
-    else
-    {
+    } else {
         _tail->next = tmp;
         _tail = _tail->next;
     }
     ++_count;
 }
 
-void LinkedList::AddAt(int index, int value)
-{
+void LinkedList::AddAt(int index, int value) {
     Node* newNode = new Node;
     newNode->data = value;
-    if (index == 0)
-    {
+    if (index == 0) {
         newNode->next = _head;
         _head = newNode;
-    }
-    else 
-    {
+    } else {
 	    Node* prev = GetElementAt(index - 1);
         newNode->next = prev->next;
         prev->next = newNode;
@@ -44,8 +35,7 @@ void LinkedList::AddAt(int index, int value)
 	++_count;
 }
 
-void LinkedList::RemoveAt(int index)
-{
+void LinkedList::RemoveAt(int index) {
     if (Count() > 1 && index < Count()) {
 		if (index > 0) {
         	Node* prev = GetElementAt(index - 1);
@@ -66,50 +56,40 @@ void LinkedList::RemoveAt(int index)
     }
 }
 
-void LinkedList::RemoveLast()
-{
+void LinkedList::RemoveLast() {
     RemoveAt(Count() - 1);
 }
 
-void LinkedList::RemoveAll()
-{
-    while (_count > 0)
-    {
+void LinkedList::RemoveAll() {
+    while (_count > 0) {
         RemoveLast();
     }
 }
 
-Node* LinkedList::GetElementAt(int index)
-{
+Node* LinkedList::GetElementAt(int index) {
     Node* tmp = _head;
-    while (index--)
-    {
+    while (index--) {
         tmp = tmp->next;
     }
     return tmp;
 }
 
-int LinkedList::GetDataElementAt(int index) 
-{
+int LinkedList::GetDataElementAt(int index) {
     return GetElementAt(index)->data;
 }
 
-int LinkedList::Count() 
-{
+int LinkedList::Count() {
     return _count;
 }
 
-LinkedList::~LinkedList() 
-{
+LinkedList::~LinkedList() {
     RemoveAll();
 }
 
-ostream& operator << (ostream &out, const LinkedList& a) 
-{
+ostream& operator << (ostream &out, const LinkedList& a) {
     Node *tmp;
     tmp = a._head;
-    while (tmp != NULL)
-    {
+    while (tmp != NULL) {
         out << tmp->data << " ";
         tmp = tmp->next;
     }

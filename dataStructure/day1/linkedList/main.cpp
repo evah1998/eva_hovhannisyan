@@ -3,8 +3,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     LinkedList a;
     int number;
     cout << "Make a list of 20 element\n";

@@ -5,15 +5,13 @@
 
 using namespace std;
 
-class Node
-{
+class Node {
     public:
         int data;
         Node *next;
 };
 
-class LinkedList
-{
+class LinkedList {
     private:
 		int _count;
         Node * _head;

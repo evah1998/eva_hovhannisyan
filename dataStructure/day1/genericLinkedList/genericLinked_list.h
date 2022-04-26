@@ -4,16 +4,14 @@
 using namespace std;
 
 template<class T>
-class Node
-{
+class Node {
 public:
     T data;
     Node<T> *next;
 };
 
 template<class T>
-class Linked_list
-{
+class Linked_list {
 private:
 	int count;
     Node<T> *head,*tail;

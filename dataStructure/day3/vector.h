@@ -14,14 +14,14 @@ class Vector {
 
     public:
         Vector();
-        //~Vector();
+        ~Vector();
         void AddFront(int);
         void Add(int);
         void AddAt(int, int);
         void RemoveAt(int);
         void RemoveAll();
         friend ostream &operator << (ostream& out, const Vector&);
-        //int& operator[](int);
+        int& operator[](int);
 
 };
 

@@ -3,8 +3,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     Stack a;
     int number;
     cout << "Make a list of 10 element\n";

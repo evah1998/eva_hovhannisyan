@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdexcept>
 #include "vector.h"
 
 Vector::Vector() {
@@ -6,7 +7,9 @@ Vector::Vector() {
     _capacity = 32;
     _size = 0;
 }
-    //~Vector();
+Vector::~Vector() {
+    RemoveAll();
+}
 
 void Vector::IncreaseSize() {
     if (_size == _capacity) {
@@ -64,4 +67,12 @@ ostream &operator << (ostream& out, const Vector& vector) {
     return out;
 }
 
-//int& Vector::operator[](int n);
+int& Vector::operator[](int index) {
+    if (index < 0 || index >= _size) {
+        if (_size == 0) {
+            throw std::invalid_argument("Error: vector is empty!(operator [])");
+        }
+        throw std::invalid_argument("Error: out of bounds exception!(operator [])");
+    }
+    return _arr[index];
+}
