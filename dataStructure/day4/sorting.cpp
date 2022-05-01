@@ -44,7 +44,7 @@ int main() {
         }
     }
     clock_t end = clock();
-    double time1 = (double) (end-start) / CLOCKS_PER_SEC;
+    double time1 = (double) (end-start) / CLOCKS_PER_SEC * 10000;
     Print(arr);
 
     cout << "\n\n";
@@ -63,7 +63,7 @@ int main() {
         }
     }
     end = clock();
-    double time2 = (double) (end-start) / CLOCKS_PER_SEC;
+    double time2 = (double) (end-start) / CLOCKS_PER_SEC * 10000;
     Print(arrCopy);
 
     cout << "Time after bubble sorting = " << time1 << endl;
