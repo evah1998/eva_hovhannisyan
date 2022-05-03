@@ -39,6 +39,10 @@ Tree::Tree(int data) {
     _root = new Node(data);
 }
 
+void Tree::DFS() {
+    DFS(_root);
+}
+
 void Tree::DFS(Node* _root) {
     stack<Node*> stack;
     stack.push(_root);
@@ -53,10 +57,6 @@ void Tree::DFS(Node* _root) {
     if (_root->_right != NULL) {
         DFS(_root->_right);
     }
-}
-
-void Tree::DFS() {
-    DFS(_root);
 }
 
 void Tree::BFS() {
