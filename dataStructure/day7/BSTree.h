@@ -25,11 +25,15 @@ class Tree {
     private:
         void printByAscendingOrder(Node*);
         Node* insert(Node*, int);
+        Node* search(Node*, int);
+        Node* deleteNode(Node*, int);
     public:
         Node* _root;
         Tree(int);
         void printByAscendingOrder();
         Node* insert(int);
+        Node* search(int);
+        Node* deleteNode(int);
 };
 
 Tree::Tree(int data) {
@@ -83,6 +87,51 @@ Node* Tree::insert(Node* _root, int data) {
     }
     
     return _root;
+}
+
+Node* Tree::search(int data) {
+    return search(_root, data);
+}
+
+Node* Tree::search(Node* tmp, int data) {
+    if (tmp == NULL || tmp->_data == data) {
+       return tmp;
+    }
+    if (data > tmp->_data) {
+       return search(tmp->_right, data);
+    }
+    return search(tmp->_left, data);
+}
+
+Node *Tree::deleteNode(int value) {
+    return deleteNode(_root, value);
+}
+
+Node *Tree::deleteNode(Node *root, int value) {
+    if (root == NULL) {
+        return NULL;
+    }
+    if (value < root->_data) {
+        root->_left = deleteNode(root->_left, value);
+    } else if (value > root->_data) {
+        root->_right = deleteNode(root->_right, value);
+    } else {
+        if (root->_left == NULL && root->_right == NULL) {
+            root = NULL;
+        } else if (root->_left == NULL) {
+            root = root->_right;
+        } else if (root->_right == NULL) {
+            root = root->_left;
+        } else {
+            Node *temp = root->_right;
+            while (temp->_left) {
+                temp = temp->_left;
+            }
+            root->_data = temp->_data;
+            root->_right = deleteNode(root->_right, temp->_data);
+        }
+    }
+    return root;
 }
 
 #endif

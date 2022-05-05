@@ -9,9 +9,13 @@ int main() {
     b->insert(3);
     b->insert(1);
     b->insert(7);
-
+    cout << "search - " << b->search(7)->_data << endl;
     b->printByAscendingOrder();
     cout << endl;
 
+    b->deleteNode(7);
+    b->printByAscendingOrder();
+    cout << endl;
+    
     return 0;
 }
