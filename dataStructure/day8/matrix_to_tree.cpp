@@ -38,7 +38,7 @@ int findRoot(bool** arr, int size) {
 
 void addChild(Tree* root, bool** arr, int size, int j, Node* tmp) {
     int i = j;
-    for (int j = 0;j < size; j++) {
+    for (int j = 0; j < size; j++) {
         if(arr[i][j] == 1) {
             tmp = root->add(tmp, j);
             addChild(root, arr, size, j, tmp);
@@ -79,7 +79,7 @@ int main() {
         cout << "Is binary tree\n";
         createTree(arr, size);
     } else {
-         cout << "Is not binary tree\n";
+        cout << "Is not binary tree\n";
     }
 
     return 0;

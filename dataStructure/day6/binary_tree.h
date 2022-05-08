@@ -33,6 +33,9 @@ class Tree {
         int min();
         int max();
         int sum();
+        Node* add(Node*, int);
+        Node* add(int);
+        void print();
 };
 
 Tree::Tree(int data) {
