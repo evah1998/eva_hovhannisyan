@@ -8,7 +8,6 @@ int main() {
         t->insert(i);
     }
 
-    t->insert(34);
     t->DFS();
     cout << endl;
     t->BFS();
@@ -16,6 +15,6 @@ int main() {
     cout << "min = " << t->min() << endl;
     cout << "max = " << t->max() << endl;
     cout << "sum = " << t->sum() << endl; 
-
+    t->printTree(t->getRoot(), 12);
     return 0;
 }

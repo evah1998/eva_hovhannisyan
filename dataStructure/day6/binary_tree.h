@@ -24,6 +24,7 @@ class Node {
 class Tree {
     private:
         void DFS(Node*);
+        void print(Node*, int, int, int);
     public:
         Node* _root;
         Tree(int);
@@ -35,11 +36,17 @@ class Tree {
         int sum();
         Node* add(Node*, int);
         Node* add(int);
-        void print();
+        void Space(int);
+        void printTree(Node*, int); 
+        Node* getRoot();
 };
 
 Tree::Tree(int data) {
     _root = new Node(data);
+}
+
+Node* Tree::getRoot() {
+    return _root;
 }
 
 void Tree::DFS() {
@@ -178,6 +185,86 @@ int Tree::sum()
         }
     }
     return sum;
+}
+
+Node* Tree::add(int data) {
+   return add(_root, data);
+}
+
+Node* Tree::add(Node* node, int data) {
+    Node* newNode = new Node(data);
+    queue <Node*> q;
+    q.push(node);
+    while (!q.empty()) {
+        Node* tmp = q.front();
+        q.pop();
+
+        if (tmp->_left == NULL) {
+            tmp->_left = newNode;
+            return tmp->_left;
+        } else {
+            q.push(tmp->_left);
+        }
+        if (tmp->_right == NULL) {
+            tmp->_right = newNode;
+            return tmp->_right;
+        } else {
+            q.push(tmp->_right);
+        }
+    }
+    return node;
+}
+
+void Tree::Space(int count)
+{
+    for (int i = 0; i < count; i++)
+    {
+        cout << " ";
+    }
+}
+
+void Tree::print(Node* tmp, int space, int l = 1, int r = 1) {
+    if (tmp->_left != NULL)
+    {
+        Space(space - l);
+        cout << "/";
+        l++;
+        if (tmp->_right == NULL)
+        {
+            cout << endl;
+            Space(space - l);
+            cout << tmp->_left->_data << endl;
+        }
+        else
+        {
+            Space(r);
+            cout << "\\" << endl;
+            r++;
+            Space(space - l);
+            cout << tmp->_left->_data;
+            Space(r);
+            cout << tmp->_right->_data << endl;
+            r++;
+        }
+    }
+    if(tmp->_left == NULL && tmp->_right != NULL)
+    {
+        Space(space + r);
+        cout << "\\" << endl;
+        r++;
+        Space(space + r);
+        cout << tmp->_right->_data << endl;
+    } 
+    if (tmp->_left != NULL && tmp->_right != NULL) {
+        print(tmp->_left, space - l);
+        print(tmp->_right, space - r);
+    }
+}
+
+void Tree::printTree(Node* tmp, int space) {
+    Space(space);
+    cout << tmp->_data << endl;
+    print(tmp, space);
 }
 
 #endif
