@@ -1,15 +1,18 @@
+#ifndef GRAPH_MATRIX
+#define GRAPH_MATRIX
+
 #include <iostream>
-#include <limits>
 #include <queue>
 
 using namespace std;
 
 class UndirectGraph {
     private:
+        bool **_matrix;
         int _vertices;
-        bool _matrix[INT8_MAX][INT8_MAX];
     public:
         UndirectGraph(int);
+        ~UndirectGraph();
         int GetVertices();
         void AddEdge(int, int);
         void AddNode();
@@ -22,12 +25,20 @@ class UndirectGraph {
 
 UndirectGraph::UndirectGraph(int vertices) {
     _vertices = vertices;  
+    _matrix = new bool *[_vertices];
     for (int i = 0; i < _vertices; ++i)
     {
+        _matrix[i] = new bool[_vertices];
         for (int j = 0; j < _vertices; ++j)
         {   
            _matrix[i][j] = 0;
         }
+    }
+}
+
+UndirectGraph::~UndirectGraph() {
+    for (int i = 0; i < _vertices; ++i) {
+        RemoveNode(_vertices - 1);
     }
 }
 
@@ -46,12 +57,19 @@ void UndirectGraph::AddEdge(int i, int j) {
 
 void UndirectGraph::AddNode() {
     ++_vertices;
+    bool **newArr = new bool *[_vertices];
     for (int i = 0; i < _vertices; ++i) {
-        _matrix[i][_vertices-1] = 0;
+        newArr[i] = new bool[_vertices];
+        for (int j = 0; j < _vertices; ++j) {
+            if (i != _vertices - 1 && j != _vertices - 1) {
+                newArr[i][j] = _matrix[i][j];
+            } else {
+                newArr[i][j] = false;
+            }
+        }
     }
-    for (int j = 0; j < _vertices; ++j) {
-        _matrix[_vertices-1][j] = 0;
-    }
+    delete _matrix;
+    _matrix = newArr;
 }
 
 void UndirectGraph::RemoveEdge(int i, int j) {
@@ -67,19 +85,17 @@ void UndirectGraph::RemoveNode(int node) {
     if (_vertices == 0) {
         cout << "Graph is empty\n";
         return;
-    }
-    if (node == _vertices - 1) {
-        --_vertices;
     } else if (node > _vertices - 1) {
         cout << "This node is not present in the graph\n";
         return;
     } else {
-        for (int i = node; i < _vertices; ++i) {
+        delete _matrix[node];
+        for (int i = node; i < _vertices - 1; ++i) {
             for (int j = 0; j < _vertices; ++j) {
                 _matrix[j][i] =_matrix[j][i + 1];
             }
             for (int j = 0; j < _vertices; ++j) {
-               _matrix[i][j] = _matrix[i + 1][j];
+                _matrix[i][j] = _matrix[i + 1][j];
             }
         }
         --_vertices;
@@ -87,10 +103,7 @@ void UndirectGraph::RemoveNode(int node) {
 }
 
 bool UndirectGraph::isEdgeExist(int i, int j) {
-    if (_matrix[i][j]) {
-        return true;
-    }
-    return false;
+    return _matrix[i][j];
 }
 
 void UndirectGraph::PrintMatrix() {
@@ -100,6 +113,7 @@ void UndirectGraph::PrintMatrix() {
         }
         cout << endl;
     }
+    cout << endl;
 }
 
 int UndirectGraph::NodeNeighbours(int node, int* arr) {
@@ -112,3 +126,5 @@ int UndirectGraph::NodeNeighbours(int node, int* arr) {
     }
     return j;
 }
+
+#endif
