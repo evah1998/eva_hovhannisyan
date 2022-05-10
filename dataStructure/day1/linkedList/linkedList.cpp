@@ -93,6 +93,5 @@ ostream& operator << (ostream &out, const LinkedList& a) {
         out << tmp->data << " ";
         tmp = tmp->next;
     }
-    out << endl;
     return out;
 }

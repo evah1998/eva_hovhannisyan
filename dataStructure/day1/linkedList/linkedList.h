@@ -12,12 +12,11 @@ class Node {
 };
 
 class LinkedList {
-    private:
+    public:
 		int _count;
         Node * _head;
         Node * _tail;
         Node* GetElementAt(int index);
-    public:
         LinkedList();
 		~LinkedList();
     	void Add(int value);
