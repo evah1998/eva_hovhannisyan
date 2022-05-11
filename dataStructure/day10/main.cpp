@@ -6,8 +6,9 @@ int main() {
     list.addEdge(0, 2);
     list.addEdge(2, 3);
     list.addEdge(1, 2);
-    list.removeEdge(1, 2);
-    list.removeNode(2);
+    list.removeEdge(0, 1);
+    
+    list.removeNode(1);
     list.addNode();
     list.printAdjList();
 }

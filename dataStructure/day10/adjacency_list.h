@@ -16,7 +16,7 @@ class Graph {
         void removeEdge(int, int);
         void addNode();
         void removeNode(int);
-        void isEdgeExists(int, int);
+        bool isEdgeExists(int, int);
         void findNeighbours();
         void findConnections();
         void printAdjList();
@@ -33,21 +33,29 @@ void Graph::addEdge(int i, int j) {
     _arr[j].Add(i);
 }
 
+
+void Graph::remove(int i, int j) {    
+    Node *prev = _arr[i]._head;
+    if (prev->data == j) {
+        _arr[i]._head = prev->next;
+        delete prev;
+        return;
+    }
+    while (prev->next) {
+        if (prev->next->data == j) {
+            Node* tmp = prev->next;
+            prev->next = tmp->next;
+            delete tmp;
+            return;
+        }
+        prev = prev->next;
+    }
+    --_arr[i]._count;
+}
+
 void Graph::removeEdge(int i, int j) {
     remove(i, j);
     remove(j, i);
-}
-
-void Graph::remove(int i, int j) {
-    
-    Node* prev = _arr[i]._head;
-    while (prev->next->data != j) {
-        prev = prev->next;
-    }
-    Node* tmp = prev->next;
-    prev->next = tmp->next;
-    delete tmp;
-    --_arr[i]._count;
 }
 
 void Graph::addNode() {
@@ -59,17 +67,23 @@ void Graph::addNode() {
     _arr = newArr;
 }
 
-void Graph::removeNode(int list) {
-    /*
-    for (int i = 0; i < _size; ++i) {
-    Node* prev = _arr[i]._head;
-    for (int j = 0; j < _arr[i]._count; ++j) {
-        if (prev->next->data == list) {
-            prev = prev->next;
-            remove(i, list);
-            --_arr[i]._count;
+bool Graph::isEdgeExists(int i, int j) {
+    Node *temp = _arr[i]._head;
+    while (temp) {
+        if (temp->data == j) {
+            return true;
         }
-    }*/
+        temp = temp->next;
+    }
+    return false;
+}
+
+void Graph::removeNode(int list) {
+    for (int i = 0; i < _size; ++i) {
+        if (isEdgeExists(i, list)) {
+            remove(i, list);
+        }
+    }
     for (int i = list; i < _size - 1; ++i) {
         _arr[i] = _arr[i + 1];
     }
