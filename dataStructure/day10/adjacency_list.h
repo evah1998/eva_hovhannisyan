@@ -18,7 +18,7 @@ class Graph {
         void addNode();
         void removeNode(int);
         bool isEdgeExists(int, int);
-        int findNeighbours(int, int*);
+        void findNeighbours(int);
         void findConnections();
         void printAdjList();
         //~Graph();
@@ -37,7 +37,6 @@ void Graph::addEdge(int i, int j) {
     _arr[i].Add(j);
     _arr[j].Add(i);
 }
-
 
 void Graph::remove(int i, int j) {    
     Node *prev = _arr[i]._head;
@@ -93,6 +92,10 @@ void Graph::removeNode(int list) {
         _arr[i] = _arr[i + 1];
     }
     --_size;
+}
+
+void Graph::findNeighbours(int i) {
+    cout << "neighbours " << i << " is " << _arr[i] << endl;
 }
 
 void Graph::printAdjList() {
