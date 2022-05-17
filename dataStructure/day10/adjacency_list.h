@@ -12,12 +12,13 @@ class Graph {
         void remove(int, int);
     public:
         Graph(int);
+        int getSize();
         void addEdge(int, int);
         void removeEdge(int, int);
         void addNode();
         void removeNode(int);
         bool isEdgeExists(int, int);
-        void findNeighbours();
+        int findNeighbours(int, int*);
         void findConnections();
         void printAdjList();
         //~Graph();
@@ -26,6 +27,10 @@ class Graph {
 Graph::Graph(int size) {
     _size = size;
     _arr = new LinkedList[_size];
+}
+
+int Graph::getSize() {
+    return _size;
 }
 
 void Graph::addEdge(int i, int j) {

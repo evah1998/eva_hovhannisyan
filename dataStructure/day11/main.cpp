@@ -11,4 +11,6 @@ int main() {
     matrix.addEdge(3, 4, 7);
     matrix.printMatrix();
     matrix.algoritm(0);
+
+    return 0;
 }
