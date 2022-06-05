@@ -1,0 +1,26 @@
+use Stepanakert
+db.createCollection("schools")
+db.schools.insertOne({name: "No. 1", director: "Romela Dadayan", address: "Knunyacneri 48", numberOfPupils: 740, coordinates: [35.38294, 56.79293], status: "basic"})
+db.schools.insertOne({name: "No. 2", director: "Laura Martirosyan", address: "X. Abovyan 43", numberOfPupils: 660, coordinates: [34.33225, 78.23456], status: "basic"})
+db.schools.insertOne({name: "No. 8", director: "Valeri Sahakyan", address: "G. Lusavorchi 20", numberOfPupils: 1100, coordinates: [48.56743, 32.45390], status: "high"})
+db.schools.insertOne({name: "No. 3", director: "Lyudmila Hovhannisyan", address: "Azatamartikneri 6", numberOfPupils: 700, coordinates: [23.45678, 54.56789], status: "basic"})
+db.schools.insertOne({name: "No. 4", director: "Arlena Minasyan", address: "Baxramjan 27", numberOfPupils: 600, coordinates: [64.45372, 34.45464], status: "basic"})
+db.schools.insertOne({name: "No. 5", director: "Vanik Xazaryan", address: "V. Vaxarshyan 5", numberOfPupils: 550, coordinates: [34.56935, 45.87423], status: "basic"})
+db.schools.insertOne({name: "No. 11", director: "Aida Grigoryan", address: "Azatamartikneri 56", numberOfPupils: 1200, coordinates: [63.35476, 67.35478], status: "high"})
+db.schools.find()
+db.schools.find({}, {name: 1, address: 1, _id: 0})
+db.schools.find().sort({numberOfPupils: 1})
+db.schools.find({status: "high"}, {_id: 0})
+db.schools.find({status: "basic"}).limit(3)
+db.school.createIndex({ coordinates: "2dsphere" });
+db.school.find({
+  coordinates: {
+    $near: {
+      $geometry: {
+        type: "Point" ,
+        coordinates: [38.879791, 49.758790]
+      },
+    },
+  },
+})
+  .limit(1);
