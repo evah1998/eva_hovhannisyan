@@ -1,0 +1,30 @@
+#h2 {
+    position: absolute;
+    left: 250px 
+}
+#p {
+    position: absolute;
+    left: 250px;
+    top: 70px
+}
+
+#h4 {
+    position: absolute;
+    left: 250px;
+    top: 120px
+}
+
+#p1 {
+    position: absolute;
+    left: 250px;
+    top: 150px
+}
+
+body {
+    background-color: grey;
+}
+
+#email {
+    position: absolute;
+    left: 230px
+}
