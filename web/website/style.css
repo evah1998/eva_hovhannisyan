@@ -1,52 +1,54 @@
-#css {
-    z-index: 1;
-}
-#html {
-    z-index: 1;
-}
-#js {
-    z-index: 2;
-}
-.logo {
-    width: 10%;
-    height: 10%;
-    object-fit: cover;
-    display: inline-block;
-}
-#text {
-    display: inline-block;
-    margin-left: 400px;
-    vertical-align: top;
-    padding: 5%;
-    color: white;
-}
-.flex_container {
-    display: inline-block;
-    display: flex;
-}
-.flex-container > div {
-    margin: 10px;
-    padding: 20px;
-    font-size: 30px;
-}
 * {
     margin: 0;
     padding: 0;
 }
 #fon_img {
+    background: url('images/Background.jpg');
     background-size: cover;
+    background-attachment: fixed;
     background-repeat: no-repeat;
     height: 100vh;
-    background-image: url('images/Background.jpg');
     box-shadow:inset 0 0 0 2000px rgba(0, 0, 0, 0.664)
-} 
+}
+.head {
+    display: flex;
+    padding-top:10%;
+}
+.my_logo_class {
+    padding-left: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 55;
+    max-width: 40%;
+    width: 35%;
+}
+.logo_images {
+    position: relative;
+}
+.logo {
+    width: 35%;
+    height: auto;
+}
+#js {
+    position: absolute;
+    top:42px;
+    left: 38%;
+    transform: translateX(-50%);
+}
+#text {
+    display: inline-block;
+    vertical-align: top;
+    color: white;
+    width: 55%;
+}
 #button {
     margin-top: 5%;
     margin-left: 40%;
     background-color: rgb(47, 126, 11);
     color: white;
-    height: 40px;
-    width: 20%;
+    padding: 10 20;
     cursor: pointer;
 }
 #button:hover {
@@ -54,22 +56,126 @@
     color: black;
     border-color: rgb(47, 126, 11);
 }
-
-#fon_greey {
-    background-color: rgba(168, 161, 161, 0.233);
+#fon_grey {
+    height: 100vh;
+    background-color: rgb(206, 200, 200);
+}
+.my_div_class {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 10 20;
+}
+.circle {
+    width: 180px;
+    height: 180px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid;
+    border-color: blue;
+}
+.number {
+    margin-top: 45%;
+    color: blue;
+    margin-left: 45%;
+    font-size: 200%;
+}
+.logo_name {
+    color: blue;
+    margin-top: 45%;
+    margin-left: 45%;
+}
+.circle:hover .logo_name {
+    color: yellow;
+}
+.circle:hover {
+    border-color: yellow;
 }
 #fon_white {
+    margin-top: 9%;
     background-color: white;
 }
 .cat {
     border-radius: 50%;
-    width: 10%;
+    width: 15%;
+    border: 2px solid;
+    border-color: yellow;
+    cursor: pointer;
 }
-.flex-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.cat:hover {
+    border-color: blue;
 }
 #copyright {
     text-align: center;
+}
+#copyright:hover > a {
+    color: blue;
+}
+#copyright > a {
+    text-decoration: auto;
+    color: black;
+}
+@media screen  and (max-width: 576px) {
+    .my_logo_class {
+        display: none;
+    }
+    #text {
+        width: 80%;
+        margin: 0 auto;
+    }
+    #js3 {
+        display: none;
+    }
+    #last_cat1 {
+        display: none;
+    }
+}
+@media screen  and (max-width: 440px) {
+    .cat {
+        width: 20%;
+    }
+    .logo_name {
+        margin-top: 39%;
+        margin-left: 38%; 
+    }
+    .circle {
+        width: 150px;
+        height: 150px;
+    }
+}
+@media screen  and (max-width: 320px) {
+    #text {
+      width: 80%;
+      margin: 0 auto;
+    }
+    #last_cat2 {
+        display: none;
+    }
+    .cat {
+        width: 30%;
+    }
+    .logo_name {
+        margin-top: 50%;
+        margin-left: 35%; 
+    }
+    .circle {
+        width: 130px;
+        height: 130px;
+        margin-top: 20%;
+    }
+    .number {
+        font-size: 150%;
+        margin-top: 42%;
+    }
+    #fon_white {
+        margin-top: 20%;
+    }
+    #copyright {
+        margin-top: 8%;
+    }
+    #button {
+        margin-left: 28%;
+    }
 }
