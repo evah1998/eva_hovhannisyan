@@ -1,0 +1,260 @@
+/* global setting */
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    border: 0;
+    margin: 0;
+}
+
+/* overlay */
+header {
+    width: 100%;
+    height: 100px;
+    background: rgba(51, 51, 51, 0.8);
+    position: fixed;
+    top: 0px;
+    z-index: 1;
+}
+
+.header {
+    width: 295px;
+    height: 40px;
+    position: absolute;
+    left: 55px;
+    top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.links {
+    height: 40px;
+    width: 190px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.links > div > a {
+    font-size: 14px;
+    text-decoration:none;
+    color: white;
+}
+
+/* setion1 */
+
+.section1 {
+    width: 100%;
+    height: 100vh;
+    font-weight: 400;
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    background-image: url('../images/background.jpg');
+    box-shadow: inset 0 0 0 100vh rgba(0, 0, 0, 0.5);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.section1 > div {
+    width: 499px;
+    height: 257px;
+    position: absolute;
+    left: 213px;
+    top: 165px;
+}
+
+.section1 > div > p {
+    color: white;
+}
+
+.section1 > div > p:nth-child(1) {
+    width: 280px;
+    height: 45px;
+    font-size: 30px;
+    letter-spacing: 0.1em;
+}
+
+.section1 > div > p:nth-child(2) {
+    width: 499px;
+    height: 152px;
+    line-height: 151px;
+    font-size: 100px;
+}
+.section1 > div > button {
+    width: 238px;
+    height: 57px;
+    border: 1px solid #FFFFFF;
+    background-color: unset;
+    color: white;
+    font-size: 17px;
+    line-height: 26px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+}
+.section1 > div > button:hover {
+    background-color: #FFFFFF;
+    color: black;
+}
+/* section 2 */
+
+.section2 {
+    width: 100%;
+    height: 606px;
+}
+
+.section2 > div {
+    margin: 0 auto;
+    margin-top: -100px;
+    text-align: center;
+    width: 100%;
+    height: 606px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.section2 > div > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.section2 > div > div > h4 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-weight: 400;
+    font-family: 'Anton', sans-serif;
+    font-size: 25px;
+}
+.section2 > div > div > p {
+    width: 564px;
+    height: 288px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 162.68%;
+}
+
+/* section3 */
+
+.section3 {
+    width: 100%;
+    height: 750px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color:  #F5F5F5;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 30px;
+    line-height: 162.68%;
+}
+
+.section3 > div {
+    position: relative;
+}
+
+.section3 > div > div:first-child {
+    height: 600px;
+    background-color: white;
+    width: 400px;
+}
+
+.section3 > div > div > ol {
+    width: 402px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.section3 > div > div > img {
+    width: 400px;
+    height: 250px;
+}
+
+.polygon {
+    width: 250px;
+    height: 70px;
+    display: flex;
+    position: absolute;
+    bottom: 315px;
+    left: 47%;
+}
+
+.big_triangle {
+    width: 0;
+    height: 0;
+    border-top: 35px solid transparent;
+    border-bottom: 35px solid transparent;
+}
+
+.small_triangle {
+  width: 0;
+  height: 0;
+  border-top: 35px solid transparent;
+  border-bottom: 35px solid transparent;
+}
+
+#polygon1 > div:first-child {
+    border-right: 210px solid #FFC100;
+}
+
+#polygon1 > div:last-child {
+    border-left: 40px solid #FFC100;
+}
+
+#polygon2 > div:first-child {
+    border-right: 210px solid #1D98D0;
+}
+
+#polygon2 > div:last-child {
+    border-left: 40px solid #1D98D0;
+}
+
+#polygon3 > div:first-child {
+    border-right: 210px solid #0DD868;
+}
+
+#polygon3 > div:last-child {
+    border-left: 40px solid #0DD868;
+}
+
+.footer {
+    background: #343A40;
+    color: white;
+    width: 100%;
+    height: 236px;
+    text-align: center;
+}
+
+.footer > div {
+    width: 740px;
+    height: 206px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.footer > hr {
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.footer > div > div:first-child {
+    display: flex;
+}
+
+.footer > div > div > h2:first-child {
+    color:#FFC100;
+}
+
+hr {
+    margin: 0 auto;
+    width: 153px;
+    height: 0px;
+    border-bottom:3px solid #565656;
+}

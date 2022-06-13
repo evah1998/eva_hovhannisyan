@@ -1,0 +1,131 @@
+@media (max-width: 1450px) {
+
+    /* .section2 */
+
+    .section2 > div > div > img {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .section2 > div > div > h4 {
+        font-size: 20px;
+    }
+
+    .section2 > div > div > p {
+        width: 400px;
+        height: auto;
+        font-size: 17px;
+    }
+    
+    /* .section3 */
+
+    .section3 {
+        font-size: 20px;
+    }
+
+
+    .section3 > div > div:first-child {
+        width: 300px;
+    }
+
+    .section3 > div > div > img {
+        width: 300px;
+        height: auto;
+    }
+
+    .section3 > div > div > ol {
+        width: 300px;
+        height: 300px;
+    }
+
+    .big_triangle {
+        border-top: 20px solid transparent;
+        border-bottom: 20px solid transparent;
+        border-right: 130px;
+    }
+
+    .small_triangle {
+        border-top: 20px solid transparent;
+        border-bottom: 20px solid transparent;
+        border-left: 20px;
+    }
+
+    .polygon {
+        width: 160px;
+        height: 50px;
+        bottom: 381px;
+        left: 57%;
+    }
+
+    #polygon1 > div:first-child {
+        border-right: 130px solid #FFC100;
+    }
+    #polygon1 > div:last-child {
+        border-left: 20px solid #FFC100;
+    }
+    
+    #polygon2 > div:first-child {
+        border-right: 130px solid #1D98D0;
+    }
+
+    #polygon2 > div:last-child {
+        border-left: 20px solid #1D98D0;
+    }
+
+    #polygon3 > div:first-child {
+        border-right: 130px solid #0DD868;
+    }
+
+    #polygon3 > div:last-child {
+        border-left: 20px solid #0DD868;
+    }
+}
+
+@media (max-width: 1070px) {
+
+    /* .section1 */
+
+    .section1 > div{
+        left: 10%;
+        right: auto;
+
+    }
+
+    /* .section2 */
+    .section2 {
+        height: 1100px;
+    }
+    .section2 > div {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* .section3 */
+
+    .section3 {
+        flex-direction: column;
+        height: auto;
+    }
+}
+
+@media(max-width:750px) {
+    /* .footer */
+    .footer  > div {
+        width: 100%;
+        font-size: 80%;
+    }
+}
+
+@media(max-width:600px) {
+    /* .section1 */
+
+    .section1 > div > p:nth-child(1) {
+        font-size: 20px;
+        height: auto;
+    }
+
+    .section1 > div > p:nth-child(2) {
+        font-size: 65px;
+        height: auto;
+    }
+}
