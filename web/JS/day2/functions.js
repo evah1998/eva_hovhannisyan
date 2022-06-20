@@ -28,14 +28,15 @@ console.log(subArray([1, 2, 3, 4, 5, 6, 7, 8], 3));
 function sumOfNumbersObject(obj) {
     let sum = 0;
     for (const [key, value] of Object.entries(obj)) {
-        if(!isNaN(value)){
+        if(typeof value == 'number'){
             sum += value;
         }
     }
     return sum;
 }
-const object = { a: 10, b: 20, c: 'string', d: 12 }
-console.log(sumOfNumbersObject(object));
+const object1 = { a: 10, b: 20, c: 'string', d: 12 };
+const object2 = { a: 10, b: 20, c: '7', d: 12 };
+console.log(sumOfNumbersObject(object1), "==object1", sumOfNumbersObject(object2), "==object2");
 
 //4
 function vowelsCount(str) {
