@@ -1,0 +1,27 @@
+.AppFC {
+text-align: center;
+}
+input.input {
+    padding: 20px;
+}
+
+button {
+    padding: 5px;
+    font-size: 20px;
+    font-weight: 900;
+    margin-left: 20px;
+}
+
+#count {
+    padding: 20px;
+    display: inline-block;
+}
+
+.form-container {
+    display: grid;
+}
+
+.button-add {
+    margin-left: 120px;
+    margin-right: 120px;
+}

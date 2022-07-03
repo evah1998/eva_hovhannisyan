@@ -1,0 +1,14 @@
+ul.list-group {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 50px;
+
+}
+
+img {
+    width: 150px;
+}
+
+li {
+    list-style-type: none;
+}
