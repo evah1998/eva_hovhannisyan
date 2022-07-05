@@ -1,6 +1,7 @@
-.AppFC {
-text-align: center;
+.App {
+    text-align: center;
 }
+
 input.input {
     padding: 20px;
 }
@@ -24,4 +25,10 @@ button {
 .button-add {
     margin-left: 120px;
     margin-right: 120px;
+}
+
+.home-page {
+    font-size: 100px;
+    margin-top: 200px;
+    text-align: center;
 }

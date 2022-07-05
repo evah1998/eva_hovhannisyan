@@ -1,42 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import Film,{list} from './Components/Film';
-import './styles/App.css';
-import Button from './Components/Buttonn';
-import Modal from './Components/Modal';
+import Navbar from './Components/Navbar/index';
+import { BrowserRouter as Router, Routes, Route}
+    from 'react-router-dom';
+import Home from './pages';
+import Films from './pages/films';
+import Film from './pages/oneFilm';
 
-export const AppFC = () =>{
-  const[searchText,setSearchText] = useState('')
-  const[newElement,setNewElement] = useState(list)
-  const [elem,setElem] = useState(list)
-  const [show, setShow] = useState(false)
-
-  const searchFilm = (e) => {
-    setSearchText(e.target.value)
-  }
-
-  useEffect(() =>{
-    let filtered = !searchText ? newElement : newElement.filter((e) => e.title.toLowerCase().includes(searchText.toLowerCase()));
-    setElem(filtered);
-  },[searchText])
-
-  const addElem = (newElement) =>{
-    setElem([...elem,newElement]);
-    list = elem;
-  }
-
-  const deleteElem = (index) => {
-    setElem(elem.filter((item , i) => index !== i));
-  }
-
+export const App = () =>{
   return (
-    <div className="AppFC">
-      <p id="count">Count: {elem.length}</p>
-      <input type="text" className="input" placeholder="Search" onChange={searchFilm}/>
-      <Button value= "Add" className="show-modal" onClick = {() => setShow(true)}/>
-      <Modal title="Add Film" onClose={() => setShow(false)} show={show} addElem = {addElem}/>
-      <Film setElem={setElem} value = {elem} deleteItem = {deleteElem}/> 
-     </div>
+    <div className="App">
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route exact path='/home' element={<Home />} />
+          <Route exact path='/' element={<Home/>} />
+          <Route path='/films' element={<Films/>} />
+          <Route path='/film' element={<Film/>} />
+        </Routes>
+      </Router>
+    </div>
   )
 }
 
-export default AppFC;
+export default App;

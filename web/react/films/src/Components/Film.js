@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/Film.css';
 import Button from './Buttonn';
+import { Link } from 'react-router-dom';
 
 import img from '../img.jpg'
 import img2 from '../img2.jpg'
@@ -44,7 +45,8 @@ const Film = (props) => {
             <h1>{e.title}</h1>
             <img src={e.img}/>
             <p>{e.description}</p>
-            <Button value = "Delete" onClick = {() => props.deleteItem(index)} />
+            <Button className='button-delete' value = "Delete" onClick = {() => props.deleteItem(index)} />
+            <Link className='go-to' value = 'Go to' onClick = {() => props.goToItem(index)} to="/film">Go to</Link>
         </li>
     );
     return(

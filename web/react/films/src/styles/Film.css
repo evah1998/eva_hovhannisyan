@@ -12,3 +12,9 @@ img {
 li {
     list-style-type: none;
 }
+
+.go-to {
+    text-decoration: auto;
+    color: black;
+    display: inline-block;
+}
