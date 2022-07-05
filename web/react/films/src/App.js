@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route}
 import Home from './pages';
 import Films from './pages/films';
 import Film from './pages/oneFilm';
+import NotFound from './pages/notFound';
 
 export const App = () =>{
   return (
@@ -16,6 +17,7 @@ export const App = () =>{
           <Route exact path='/' element={<Home/>} />
           <Route path='/films' element={<Films/>} />
           <Route path='/film' element={<Film/>} />
+          <Route path='*' element={<NotFound/>} />
         </Routes>
       </Router>
     </div>
