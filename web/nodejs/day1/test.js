@@ -4,9 +4,11 @@ import path from "path"
 const app = express()
 const port = 3000
 
+app.use(express.static('public'));
+
 app.use((req, res, next) => {
-    console.log(req.url);
-    next()
+   console.log(req.url);
+   next()
 })
 
 app.get('/', (req, res) => {
@@ -14,7 +16,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/user', (req, res) => {
-    res.send("Hello user")
+   res.send("Hello user")
 })
 
 app.listen(port, () => {
