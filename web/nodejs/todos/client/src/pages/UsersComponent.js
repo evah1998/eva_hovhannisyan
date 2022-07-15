@@ -17,7 +17,7 @@ function UsersComponent () {
       <ul>
         {users.map((user) => (
           <li key={user.id}>
-            <Link to={`/user/${user.id}`}>{user.name} {user.surname}</Link>
+            <Link to={`/users/${user.id}`}>{user.name} {user.surname}</Link>
           </li>
         ))}
       </ul>
