@@ -39,7 +39,13 @@ function TodosComponent () {
         setTodos([...todos, newTodo]);
         setMessage('');
       })
-  }
+    }
+    //
+    const complitedSize = todos.filter((todo) => todo.status).length
+
+    const clearTodos = () => {
+      setTodos(todos.filter((todo) => !todo.status))
+    }
 
   return (
     <div>
@@ -57,6 +63,10 @@ function TodosComponent () {
           </li>
         ))}
       </ul>
+      <div>
+        <span>{complitedSize}/{todos.length} Completed</span>
+        <button onClick={clearTodos}>Clear Completed</button>
+      </div>
     </div>
   );
 }
