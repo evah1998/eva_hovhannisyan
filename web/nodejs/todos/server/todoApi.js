@@ -1,32 +1,34 @@
 const express = require('express');
 const fs = require('fs');
+const Todo = require('./models/Todo');
 const todos = require('./todos.json');
 
 const app = express();
 
-app.get('/users/todos/:userId', (req, res) => {
-  const userTodos = todos.filter(todo => todo.userId === Number(req.params.userId));
-  res.send(JSON.stringify(userTodos));
-  res.end();
+app.get('/users/todos/:userId', async (req, res) => {
+  try {
+    const userTodos = await Todo.find({ userId: Number(req.params.userId) });
+    return res.status(200).json(userTodos);
+  } catch (err) {
+    return res.status(400).json({ message: 'Bad request' });
+  }
 });
 
-app.post('/user/:userId/create-todo', (req, res) => {
-  const userId = Number(req.params.userId);
-  const newTodo = {
-    id: todos[todos.length - 1].id + 1,
-    userId: userId,
-    title: req.body.title,
-    status: false,
-  };
+app.post('/user/:userId/create-todo', async (req, res) => {
+  try {
+    const allTodos = await Todo.find();
+    const newTodo = new Todo({
+      id: (allTodos[allTodos.length - 1]?.id + 1) ?? 1,
+      userId: req.params.userId,
+      title: req.body.title,
+    });
 
-  fs.readFile('todos.json', function (err, data) {
-    const json = JSON.parse(data)
-    json.push(newTodo);
-    fs.writeFile('todos.json', JSON.stringify(json), function() {});
-  });
+    await newTodo.save();
 
-  res.send(JSON.stringify(todos));
-  res.end();
+    return res.status(201).json(newTodo);
+  } catch (err) {
+    return res.status(400).json({ message: 'Something went wrong on todo creating' });
+  }
 });
 
 app.patch('/update-todo-status/:todoId', (req, res) => {

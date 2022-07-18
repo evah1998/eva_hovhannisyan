@@ -31,13 +31,7 @@ function TodosComponent () {
       )
         .then((response) => response.json())
         .then((data) => {
-          const newTodo = {
-            id: data[data.length - 1].id + 1,
-            userId: Number(params.userId),
-            title: message,
-            status: false,
-          };
-          setTodos([...todos, newTodo]);
+          setTodos([...todos, data]);
           setMessage('');
         })
       }
@@ -69,10 +63,6 @@ function TodosComponent () {
           return true;
         }));
       })
-  }
-
-  if (todos.length === 0) {
-    return <h1>User does not exist</h1>
   }
 
   return (
