@@ -17,8 +17,9 @@ app.get('/users/todos/:userId', async (req, res) => {
 app.post('/user/:userId/create-todo', async (req, res) => {
   try {
     const allTodos = await Todo.find();
+    const id = allTodos.length ? allTodos[allTodos.length - 1]?.id + 1 : 1;
     const newTodo = new Todo({
-      id: (allTodos[allTodos.length - 1]?.id + 1) ?? 1,
+      id: id,
       userId: req.params.userId,
       title: req.body.title,
     });
@@ -31,42 +32,29 @@ app.post('/user/:userId/create-todo', async (req, res) => {
   }
 });
 
-app.patch('/update-todo-status/:todoId', (req, res) => {
-  const todoId = Number(req.params.todoId);
-
-  fs.readFile('todos.json', function (err, data) {
-    let json = JSON.parse(data)
-    json = json.map((todo) => {
-      if (todo.id === todoId) {
-        todo.status = !todo.status;
-      }
-
-      return todo;
-    });
-
-    fs.writeFile('todos.json', JSON.stringify(json), function() {});
-  });
-
-  res.end();
+app.patch('/update-todo-status/:todoId', async (req, res) => {
+  try {
+    const todo = await Todo.findOne({id: Number(req.params.todoId)});
+    const updatedStatus = Todo.findOneAndUpdate(
+      {id: Number(req.params.todoId)},
+      {$set: {status: !todo.status}}, null, (err, doc) => {
+        if (err&& !doc) {
+          throw('Error')
+        }
+      });
+    return res.status(200).json(updatedStatus);
+  } catch {
+    return res.status(400).json({ message: 'Status not updated'});
+  }
 });
 
-app.delete('/delete-completed-todos/:userId', (req, res) => {
-  const userId = Number(req.params.userId);
-
-  fs.readFile('todos.json', function (err, data) {
-    let json = JSON.parse(data)
-    json = json.filter((todo) => {
-      if (todo.userId === userId && todo.status === true) {
-        return false;
-      }
-
-      return true;
-    });
-
-    fs.writeFile('todos.json', JSON.stringify(json), function() {});
-  });
-
-  res.end();
+app.delete('/delete-completed-todos/:userId', async (req, res) => {
+  try {
+    const deleteTodos = await Todo.deleteMany({userId: Number(req.params.userId), status: true});
+    return res.status(200).json(deleteTodos);
+  } catch (err) {
+    return res.status(400).json({ message: "Can't delete todos"});
+  }
 });
 
 module.exports = app;
