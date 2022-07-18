@@ -1,8 +1,20 @@
 const express = require('express');
 const cors = require('cors');
+const mongoose = require('mongoose');
 
 const todoApi = require('./todoApi');
 const userApi = require('./userApi');
+
+async function main() {
+  try {
+    await mongoose.connect('mongodb://localhost:27017/todos')
+    console.log('Database connected');
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+main();
 
 const app = express();
 const port = 3001;

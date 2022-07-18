@@ -1,11 +1,12 @@
 const express = require('express');
-const users = require('./users.json');
+const User = require('./models/User');
 
 const app = express();
 
-app.get('/users', (req, res) => {
-  res.send(JSON.stringify(users));
-  res.end();
+app.get('/users', async (req, res) => {
+  const allUsers = await User.find();
+
+  return res.json(allUsers);
 });
 
 module.exports = app;
