@@ -17,9 +17,9 @@ app.get('/users/todos/:userId', async (req, res) => {
 app.post('/user/:userId/create-todo', async (req, res) => {
   try {
     const allTodos = await Todo.find();
-    const id = allTodos.length ? allTodos[allTodos.length - 1]?.id + 1 : 1;
+    const id = allTodos.length > 0 ? allTodos[allTodos.length - 1]?.id + 1 : 1;
     const newTodo = new Todo({
-      id: id,
+      id,
       userId: req.params.userId,
       title: req.body.title,
     });
@@ -35,15 +35,13 @@ app.post('/user/:userId/create-todo', async (req, res) => {
 app.patch('/update-todo-status/:todoId', async (req, res) => {
   try {
     const todo = await Todo.findOne({id: Number(req.params.todoId)});
-    const updatedStatus = Todo.findOneAndUpdate(
+    const updatedStatus = await Todo.findOneAndUpdate(
       {id: Number(req.params.todoId)},
-      {$set: {status: !todo.status}}, null, (err, doc) => {
-        if (err&& !doc) {
-          throw('Error')
-        }
-      });
+      {$set: {status: !todo.status}},
+    );
+
     return res.status(200).json(updatedStatus);
-  } catch {
+  } catch (err) {
     return res.status(400).json({ message: 'Status not updated'});
   }
 });
